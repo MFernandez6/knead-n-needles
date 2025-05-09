@@ -8,7 +8,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Knead & Needles | Professional Massage Studio",
-  description: "Experience premium massage therapy services at Knead & Needles. Professional therapists, relaxing environment, and exceptional care.",
+  description:
+    "Experience premium massage therapy services at Knead & Needles. Professional therapists, relaxing environment, and exceptional care.",
 };
 
 export default function RootLayout({
@@ -20,9 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} min-h-screen flex flex-col`}>
         <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

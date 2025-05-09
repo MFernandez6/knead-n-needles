@@ -1,103 +1,286 @@
+"use client";
+
+import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import BookingModal from "@/components/BookingModal";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative h-[80vh] flex items-center justify-center">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/beach-image.jpg"
+            alt="Relaxing massage therapy"
+            fill
+            className="object-cover brightness-50"
+            priority
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="relative z-10 text-center text-white px-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Experience True Relaxation
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+            Professional massage therapy services to help you unwind and
+            rejuvenate
+          </p>
+          <button
+            onClick={() => setIsBookingModalOpen(true)}
+            className="bg-indigo-600 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-indigo-700 transition-colors"
+          >
+            Book Your Session
+          </button>
+        </div>
+      </section>
+
+      {/* Featured Services */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Swedish Massage */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105">
+              <div className="relative h-48">
+                <Image
+                  src="/images/swedish.jpg"
+                  alt="Swedish Massage"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Swedish Massage</h3>
+                <p className="text-gray-600 mb-4">
+                  A gentle, relaxing massage that promotes overall wellness and
+                  stress relief.
+                </p>
+                <Link
+                  href={`/services?service=swedish`}
+                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                >
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+
+            {/* Deep Tissue */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105">
+              <div className="relative h-48">
+                <Image
+                  src="/images/deep-tissue.jpg"
+                  alt="Deep Tissue Massage"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Deep Tissue</h3>
+                <p className="text-gray-600 mb-4">
+                  Targeted pressure to release chronic muscle tension and
+                  improve mobility.
+                </p>
+                <Link
+                  href={`/services?service=deep-tissue`}
+                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                >
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+
+            {/* Sports Massage */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105">
+              <div className="relative h-48">
+                <Image
+                  src="/images/sports.webp"
+                  alt="Sports Massage"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Sports Massage</h3>
+                <p className="text-gray-600 mb-4">
+                  Specialized massage for athletes to enhance performance and
+                  recovery.
+                </p>
+                <Link
+                  href={`/services?service=sports`}
+                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                >
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+
+            {/* Acupuncture */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105">
+              <div className="relative h-48">
+                <Image
+                  src="/images/acupuncture.jpg"
+                  alt="Acupuncture Therapy"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">
+                  Acupuncture Therapy
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Traditional Chinese medicine technique that involves inserting
+                  thin needles into specific points on the body to treat pain
+                  and various conditions
+                </p>
+                <Link
+                  href={`/services?service=acupuncture`}
+                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                >
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+
+            {/* Cupping */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105">
+              <div className="relative h-48">
+                <Image
+                  src="/images/cupping.jpg"
+                  alt="cupping"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Cupping Therapy</h3>
+                <p className="text-gray-600 mb-4">
+                  An alternative medicine practice where cups are placed on the
+                  skin to create suction, potentially relieving pain and
+                  promoting healing.
+                </p>
+                <Link
+                  href={`/services?service=cupping`}
+                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                >
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+
+            {/* Reflexology */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105">
+              <div className="relative h-48">
+                <Image
+                  src="/images/reflexology.jpeg"
+                  alt="reflexology"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Reflexology</h3>
+                <p className="text-gray-600 mb-4">
+                  Reflexology uses gentle to firm pressure on different pressure
+                  points of the feet, hands, and ears.
+                </p>
+                <Link
+                  href={`/services?service=reflexology`}
+                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                >
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Why Choose Knead & Needles
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-8 h-8 text-indigo-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Expert Therapists</h3>
+              <p className="text-gray-600">
+                Our licensed therapists have years of experience and specialized
+                training.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-8 h-8 text-indigo-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Convenient Hours</h3>
+              <p className="text-gray-600">
+                Extended hours to accommodate your busy schedule.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-8 h-8 text-indigo-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Premium Experience</h3>
+              <p className="text-gray-600">
+                Luxurious facilities and premium products for your comfort.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </div>
   );
 }
