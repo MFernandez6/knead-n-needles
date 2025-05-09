@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
@@ -105,7 +106,7 @@ const services = [
   },
 ];
 
-export default function ServicesPage() {
+function ServicesContent() {
   const [selectedService, setSelectedService] = useState<
     (typeof services)[0] | null
   >(null);
@@ -224,5 +225,13 @@ export default function ServicesPage() {
         selectedService={selectedService?.title}
       />
     </div>
+  );
+}
+
+export default function ServicesPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ServicesContent />
+    </Suspense>
   );
 }
