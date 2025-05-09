@@ -61,14 +61,15 @@ export default function AboutPage() {
                 traditional healing practices, Luis A. Fernandez is a dedicated
                 practitioner committed to helping others achieve optimal health
                 and wellness. His journey in holistic healing began with a deep
-                fascination for the body's natural ability to heal itself.
+                fascination for the body&apos;s natural ability to heal itself.
               </p>
               <p className="text-gray-600 text-lg mb-6">
-                Luis's expertise spans multiple disciplines, including Swedish
-                massage, deep tissue therapy, sports massage, acupuncture, and
-                traditional Chinese medicine. He has trained extensively in both
-                Eastern and Western healing modalities, allowing him to provide
-                a unique and comprehensive approach to treatment.
+                Luis&apos;s expertise spans multiple disciplines, including
+                Swedish massage, deep tissue therapy, sports massage,
+                acupuncture, and traditional Chinese medicine. He has trained
+                extensively in both Eastern and Western healing modalities,
+                allowing him to provide a unique and comprehensive approach to
+                treatment.
               </p>
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold">
@@ -101,7 +102,7 @@ export default function AboutPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Our Philosophy</h2>
             <p className="text-gray-600 text-lg mb-6">
-              At Knead & Needles, we believe in treating the whole person –
+              At Knead & Needles, we believe in treating the whole person -
               body, mind, and spirit. Our approach combines ancient wisdom with
               modern techniques to create a truly holistic healing experience.
             </p>
