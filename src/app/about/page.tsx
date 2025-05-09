@@ -61,10 +61,10 @@ export default function AboutPage() {
                 traditional healing practices, Luis A. Fernandez is a dedicated
                 practitioner committed to helping others achieve optimal health
                 and wellness. His journey in holistic healing began with a deep
-                fascination for the body&apos;s natural ability to heal itself.
+                fascination for the body&#39;s natural ability to heal itself.
               </p>
               <p className="text-gray-600 text-lg mb-6">
-                Luis&apos;s expertise spans multiple disciplines, including
+                Luis&#39;s expertise spans multiple disciplines, including
                 Swedish massage, deep tissue therapy, sports massage,
                 acupuncture, and traditional Chinese medicine. He has trained
                 extensively in both Eastern and Western healing modalities,
