@@ -10,7 +10,7 @@ export default function AboutPage() {
             About Knead & Needles
           </h1>
           <p className="text-xl text-center max-w-3xl mx-auto">
-            Your journey to wellness and healing begins here
+            Your journey to wellness and healing begins here at Knead
           </p>
         </div>
       </section>
