@@ -4,9 +4,40 @@ import Link from "next/link";
 import { useState } from "react";
 import BookingModal from "./BookingModal";
 
+interface AddOn {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
+
+// Define a default service for the navbar booking
+const defaultService = {
+  id: "general",
+  title: "General Massage",
+  subtitle: "Relaxation and Wellness",
+  image: "/images/general-massage.jpg",
+  description:
+    "A full-body massage designed to promote relaxation and reduce stress.",
+  benefits: [
+    "Reduces stress",
+    "Improves circulation",
+    "Relieves muscle tension",
+  ],
+  duration: "60 minutes",
+  price: "80",
+  addOns: [],
+};
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const selectedAddOns: AddOn[] = [];
+
+  const handleEditAddOns = () => {
+    // Redirect to services page for add-on selection
+    window.location.href = "/services";
+  };
 
   return (
     <nav className="bg-white shadow-sm">
@@ -53,37 +84,38 @@ const Navbar = () => {
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500"
             >
               <span className="sr-only">Open main menu</span>
-              {!isMenuOpen ? (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              )}
+              {/* Menu icon */}
+              <svg
+                className={`${isMenuOpen ? "hidden" : "block"} h-6 w-6`}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              {/* Close icon */}
+              <svg
+                className={`${isMenuOpen ? "block" : "hidden"} h-6 w-6`}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
             </button>
           </div>
         </div>
@@ -124,6 +156,9 @@ const Navbar = () => {
       <BookingModal
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
+        service={defaultService}
+        selectedAddOns={selectedAddOns}
+        onEditAddOns={handleEditAddOns}
       />
     </nav>
   );
