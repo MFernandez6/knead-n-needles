@@ -5,8 +5,27 @@ import Image from "next/image";
 import { useState } from "react";
 import BookingModal from "@/components/BookingModal";
 
+// Define a default service for the home page booking
+const defaultService = {
+  id: "general",
+  title: "General Massage",
+  subtitle: "Relaxation and Wellness",
+  image: "/images/general-massage.jpg",
+  description:
+    "A full-body massage designed to promote relaxation and reduce stress.",
+  benefits: [
+    "Reduces stress",
+    "Improves circulation",
+    "Relieves muscle tension",
+  ],
+  duration: "60 minutes",
+  price: "80",
+  addOns: [],
+};
+
 export default function Home() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [selectedAddOns, setSelectedAddOns] = useState([]);
 
   return (
     <div className="min-h-screen">
@@ -278,6 +297,9 @@ export default function Home() {
       <BookingModal
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
+        service={defaultService}
+        selectedAddOns={selectedAddOns}
+        onEditAddOns={() => {}}
       />
     </div>
   );
