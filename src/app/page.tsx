@@ -5,6 +5,13 @@ import Image from "next/image";
 import { useState } from "react";
 import BookingModal from "@/components/BookingModal";
 
+interface AddOn {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
+
 // Define a default service for the home page booking
 const defaultService = {
   id: "general",
@@ -25,7 +32,7 @@ const defaultService = {
 
 export default function Home() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [selectedAddOns, setSelectedAddOns] = useState([]);
+  const selectedAddOns: AddOn[] = [];
 
   return (
     <div className="min-h-screen">
