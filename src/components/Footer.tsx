@@ -7,11 +7,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-900">
-              Knead & Needles
+              Needle & Knead
             </h3>
             <p className="text-gray-600 text-sm">
-              Professional massage therapy services for your wellness and
-              relaxation needs.
+              Professional at-home massage therapy services for your wellness
+              and relaxation needs.
             </p>
           </div>
 
@@ -44,6 +44,14 @@ const Footer = () => {
                   Sports Massage
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/services/sports"
+                  className="text-gray-600 hover:text-gray-900 text-sm"
+                >
+                  TMJ
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -52,11 +60,10 @@ const Footer = () => {
               Contact
             </h3>
             <ul className="mt-4 space-y-2">
-              <li className="text-gray-600 text-sm">123 Wellness Street</li>
-              <li className="text-gray-600 text-sm">City, State 12345</li>
-              <li className="text-gray-600 text-sm">(555) 123-4567</li>
+              <li className="text-gray-600 text-sm">Miami, Florida</li>
+              <li className="text-gray-600 text-sm">(786) 417-3948</li>
               <li className="text-gray-600 text-sm">
-                info@kneadandneedles.com
+                NeedleAndKneadServices @gmail.com
               </li>
             </ul>
           </div>
@@ -67,17 +74,17 @@ const Footer = () => {
             </h3>
             <ul className="mt-4 space-y-2">
               <li className="text-gray-600 text-sm">
-                Monday - Friday: 9am - 8pm
+                Monday - Friday: 10am - 8pm
               </li>
-              <li className="text-gray-600 text-sm">Saturday: 10am - 6pm</li>
-              <li className="text-gray-600 text-sm">Sunday: Closed</li>
+              <li className="text-gray-600 text-sm">Saturday: 10am - 8pm</li>
+              <li className="text-gray-600 text-sm">Sunday: 10am - 8pm</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-200">
           <p className="text-gray-400 text-sm text-center">
-            © {new Date().getFullYear()} Knead & Needles. All rights reserved.
+            © {new Date().getFullYear()} Needle & Knead. All rights reserved.
           </p>
         </div>
       </div>

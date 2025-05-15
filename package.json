@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.3",
+    "@heroicons/react": "^2.2.0",
+    "@sendgrid/mail": "^8.1.5",
     "date-fns": "^4.1.0",
     "next": "15.3.2",
     "react": "^19.0.0",

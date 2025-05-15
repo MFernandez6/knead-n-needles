@@ -1,6 +1,6 @@
-# Knead & Needles - Massage Studio Website
+# Needle & Knead - Massage Studio Website
 
-A modern, responsive website for Knead & Needles massage studio built with Next.js, React, and Tailwind CSS.
+A modern, responsive website for Needle & Knead massage studio built with Next.js, React, and Tailwind CSS.
 
 ## Features
 
@@ -87,8 +87,13 @@ knead-n-needles/
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
 # knead-n-needles
+
 # knead-n-needles
+
 # knead-n-needles
+
 # knead-n-needles
+
 # massage-studio

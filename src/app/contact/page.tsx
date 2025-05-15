@@ -4,7 +4,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-indigo-600 text-white py-16">
+      <section className="bg-amber-700 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-center mb-4">Contact Us</h1>
           <p className="text-xl text-center max-w-3xl mx-auto">
@@ -25,9 +25,9 @@ export default function ContactPage() {
 
                 {/* Address */}
                 <div className="flex items-start space-x-4 mb-6">
-                  <div className="bg-indigo-100 p-3 rounded-full">
+                  <div className="bg-amber-100 p-3 rounded-full">
                     <svg
-                      className="w-6 h-6 text-indigo-600"
+                      className="w-6 h-6 text-amber-700"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -47,20 +47,16 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-1">Address</h3>
-                    <p className="text-gray-600">
-                      7800 Camino Real
-                      <br />
-                      Miami, FL 33143
-                    </p>
+                    <h3 className="font-semibold text-lg mb-1">Servicing</h3>
+                    <p className="text-gray-600">South Florida</p>
                   </div>
                 </div>
 
                 {/* Phone */}
                 <div className="flex items-start space-x-4 mb-6">
-                  <div className="bg-indigo-100 p-3 rounded-full">
+                  <div className="bg-amber-100 p-3 rounded-full">
                     <svg
-                      className="w-6 h-6 text-indigo-600"
+                      className="w-6 h-6 text-amber-700"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -77,7 +73,7 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-lg mb-1">Phone</h3>
                     <a
                       href="tel:786-417-3948"
-                      className="text-indigo-600 hover:text-indigo-700"
+                      className="text-amber-700 hover:text-amber-800"
                     >
                       (786) 417-3948
                     </a>
@@ -86,9 +82,9 @@ export default function ContactPage() {
 
                 {/* Email */}
                 <div className="flex items-start space-x-4">
-                  <div className="bg-indigo-100 p-3 rounded-full">
+                  <div className="bg-amber-100 p-3 rounded-full">
                     <svg
-                      className="w-6 h-6 text-indigo-600"
+                      className="w-6 h-6 text-amber-700"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -105,9 +101,9 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-lg mb-1">Email</h3>
                     <a
                       href="mailto:kneadandneedles@gmail.com"
-                      className="text-indigo-600 hover:text-indigo-700"
+                      className="text-amber-700 hover:text-amber-800"
                     >
-                      kneadandneedles@gmail.com
+                      needleandkneadservices@gmail.com
                     </a>
                   </div>
                 </div>
@@ -119,15 +115,15 @@ export default function ContactPage() {
                 <div className="space-y-4">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Monday - Friday</span>
-                    <span className="font-semibold">9:00 AM - 8:00 PM</span>
+                    <span className="font-semibold">10:00 AM - 8:00 PM</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Saturday</span>
-                    <span className="font-semibold">10:00 AM - 6:00 PM</span>
+                    <span className="font-semibold">10:00 AM - 8:00 PM</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Sunday</span>
-                    <span className="font-semibold">Closed</span>
+                    <span className="font-semibold">10:00 AM - 8:00 PM</span>
                   </div>
                 </div>
               </div>
@@ -136,7 +132,7 @@ export default function ContactPage() {
             {/* Map */}
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.8993703813526!2d-80.3092!3d25.7097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9c7c8c8c8c8c8%3A0x88d9c7c8c8c8c8c8!2s7800%20Camino%20Real%2C%20Miami%2C%20FL%2033143!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114964.38937779299!2d-80.30779505333459!3d25.78254537322106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b0a20ec8c111%3A0xff96f271ddad4f65!2sMiami%2C%20FL!5e0!3m2!1sen!2sus!4v1747260116424!5m2!1sen!2sus"
                 width="100%"
                 height="450"
                 style={{ border: 0 }}

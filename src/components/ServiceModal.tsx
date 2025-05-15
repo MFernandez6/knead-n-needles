@@ -80,14 +80,14 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
 
           <div className="flex justify-between items-center mb-6">
             <span className="text-gray-600 text-lg">{service.duration}</span>
-            <span className="font-semibold text-indigo-600 text-xl">
+            <span className="font-semibold text-amber-700 text-xl">
               {service.price}
             </span>
           </div>
 
           <button
             onClick={onClose}
-            className="w-full bg-indigo-600 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-indigo-700 transition-colors"
+            className="w-full bg-amber-700 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-amber-800 transition-colors"
           >
             Book This Service
           </button>

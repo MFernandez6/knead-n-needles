@@ -7,9 +7,9 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Knead & Needles | Professional Massage Studio",
+  title: "Needle & Knead | Professional Massage Studio",
   description:
-    "Experience premium massage therapy services at Knead & Needles. Professional therapists, relaxing environment, and exceptional care.",
+    "Experience premium massage therapy services at Needle & Knead. Professional therapists, relaxing environment, and exceptional care.",
 };
 
 export default function RootLayout({

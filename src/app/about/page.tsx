@@ -7,10 +7,10 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-indigo-600 text-white py-16">
+      <section className="bg-amber-700 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-center mb-4">
-            About Knead & Needles
+            About Needle & Knead
           </h1>
           <p className="text-xl text-center max-w-3xl mx-auto">
             Your journey to wellness and healing begins here at Knead
@@ -23,14 +23,6 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative h-[400px] rounded-lg overflow-hidden">
-              {/* <video
-                src="/images/intro-22.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
-              /> */}
               <Image
                 src="/office.jpg"
                 alt="office"
@@ -41,7 +33,7 @@ export default function AboutPage() {
             <div>
               <h2 className="text-3xl font-bold mb-6">Our Studio</h2>
               <p className="text-gray-600 text-lg mb-6">
-                Welcome to Knead & Needles, a sanctuary of healing and wellness
+                Welcome to Needle & Knead, a sanctuary of healing and wellness
                 located in the heart of our community. Our studio is designed to
                 provide a peaceful and comfortable environment where you can
                 escape the stresses of daily life and focus on your well-being.
@@ -63,7 +55,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h2 className="text-3xl font-bold mb-6">
-                Meet Luis A. Fernandez
+                Meet Luis A. Fernandez, LMT
               </h2>
               <p className="text-gray-600 text-lg mb-6">
                 With over 15 years of experience in massage therapy and
@@ -86,7 +78,7 @@ export default function AboutPage() {
                 </h3>
                 <ul className="list-disc list-inside text-gray-600 space-y-2">
                   <li>Licensed Massage Therapist</li>
-                  <li>Certified Acupuncturist</li>
+                  <li>Certified Acupuncturist (Coming Soon)</li>
                   <li>Sports Massage Specialist</li>
                   <li>Traditional Chinese Medicine Practitioner</li>
                   <li>Reflexology Certification</li>
@@ -95,7 +87,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-[500px] rounded-lg overflow-hidden order-1 lg:order-2">
               <Image
-                src="/images/goku.webp"
+                src="/images/about-me.jpg"
                 alt="Luis A. Fernandez"
                 fill
                 className="object-cover"
@@ -111,9 +103,9 @@ export default function AboutPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Our Philosophy</h2>
             <p className="text-gray-600 text-lg mb-6">
-              At Knead & Needles, we believe in treating the whole person -
-              body, mind, and spirit. Our approach combines ancient wisdom with
-              modern techniques to create a truly holistic healing experience.
+              At Needle & Knead, we believe in treating the whole person - body,
+              mind, and spirit. Our approach combines ancient wisdom with modern
+              techniques to create a truly holistic healing experience.
             </p>
             <p className="text-gray-600 text-lg">
               We are committed to providing personalized care that addresses

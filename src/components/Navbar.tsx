@@ -13,10 +13,8 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0 flex items-center">
-              <span className="text-2xl font-semibold text-gray-800">
-                Knead & Needles
-              </span>
+            <Link href="/" className="text-xl font-bold">
+              Needle & Knead
             </Link>
           </div>
 
@@ -42,7 +40,7 @@ const Navbar = () => {
             </Link>
             <button
               onClick={() => setIsBookingModalOpen(true)}
-              className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700"
+              className="bg-amber-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-amber-800"
             >
               Book Now
             </button>
@@ -52,7 +50,7 @@ const Navbar = () => {
           <div className="sm:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500"
             >
               <span className="sr-only">Open main menu</span>
               {!isMenuOpen ? (
@@ -115,7 +113,7 @@ const Navbar = () => {
             </Link>
             <button
               onClick={() => setIsBookingModalOpen(true)}
-              className="block w-full text-left px-3 py-2 text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+              className="block w-full text-left px-3 py-2 text-base font-medium text-white bg-amber-700 hover:bg-amber-800"
             >
               Book Now
             </button>

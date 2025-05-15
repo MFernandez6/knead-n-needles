@@ -14,7 +14,7 @@ export default function Home() {
       <section className="relative h-[80vh] flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/beach-image.jpg"
+            src="/images/hero-image.jpg"
             alt="Relaxing massage therapy"
             fill
             className="object-cover brightness-50"
@@ -31,7 +31,7 @@ export default function Home() {
           </p>
           <button
             onClick={() => setIsBookingModalOpen(true)}
-            className="bg-indigo-600 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-indigo-700 transition-colors"
+            className="bg-amber-700 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-amber-800 transition-colors"
           >
             Book Your Session
           </button>
@@ -61,7 +61,7 @@ export default function Home() {
                 </p>
                 <Link
                   href={`/services?service=swedish`}
-                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                  className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
                 </Link>
@@ -86,7 +86,7 @@ export default function Home() {
                 </p>
                 <Link
                   href={`/services?service=deep-tissue`}
-                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                  className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
                 </Link>
@@ -111,7 +111,7 @@ export default function Home() {
                 </p>
                 <Link
                   href={`/services?service=sports`}
-                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                  className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
                 </Link>
@@ -139,7 +139,7 @@ export default function Home() {
                 </p>
                 <Link
                   href={`/services?service=acupuncture`}
-                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                  className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
                 </Link>
@@ -165,7 +165,7 @@ export default function Home() {
                 </p>
                 <Link
                   href={`/services?service=cupping`}
-                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                  className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
                 </Link>
@@ -190,7 +190,7 @@ export default function Home() {
                 </p>
                 <Link
                   href={`/services?service=reflexology`}
-                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                  className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
                 </Link>
@@ -203,14 +203,12 @@ export default function Home() {
       {/* Why Choose Us */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Why Choose Knead & Needles
-          </h2>
+          <h2 className="text-3xl font-bold mb-6">Why Choose Needle & Knead</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-indigo-600"
+                  className="w-8 h-8 text-amber-700"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -231,9 +229,9 @@ export default function Home() {
             </div>
 
             <div className="text-center">
-              <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-indigo-600"
+                  className="w-8 h-8 text-amber-700"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -253,9 +251,9 @@ export default function Home() {
             </div>
 
             <div className="text-center">
-              <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-indigo-600"
+                  className="w-8 h-8 text-amber-700"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
