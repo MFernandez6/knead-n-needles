@@ -34,6 +34,11 @@ export default function Home() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const selectedAddOns: AddOn[] = [];
 
+  const handleEditAddOns = () => {
+    // Redirect to services page for add-on selection
+    window.location.href = "/services";
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -306,7 +311,7 @@ export default function Home() {
         onClose={() => setIsBookingModalOpen(false)}
         service={defaultService}
         selectedAddOns={selectedAddOns}
-        onEditAddOns={() => {}}
+        onEditAddOns={handleEditAddOns}
       />
     </div>
   );
