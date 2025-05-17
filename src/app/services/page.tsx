@@ -129,7 +129,6 @@ const services = [
       "Improves athletic performance",
       "Speeds up recovery time",
       "Increases flexibility",
-      "Reduces muscle soreness",
     ],
     duration: "60-90 minutes",
     price: "From $100",
@@ -148,6 +147,8 @@ const services = [
       "Improved sleep",
       "Better digestion",
       "Enhanced energy flow",
+      "Strengthened immune system",
+      "Improved mental clarity",
     ],
     duration: "45-60 minutes",
     price: "From $100",
@@ -166,6 +167,8 @@ const services = [
       "Better sleep",
       "Enhanced energy levels",
       "Natural pain relief",
+      "Boosted immune function",
+      "Improved mental clarity",
     ],
     duration: "30 minutes",
     price: "From $40",
@@ -210,11 +213,8 @@ function ServicesContent() {
 
   const handleBookNow = (service: Service) => {
     setSelectedService(service);
-    if (service.addOns && service.addOns.length > 0) {
-      setIsAddOnsModalOpen(true);
-    } else {
-      setIsBookingModalOpen(true);
-    }
+    setSelectedAddOns([]);
+    setIsBookingModalOpen(true);
   };
 
   const handleAddOnsSelected = (addOns: AddOn[]) => {
@@ -304,7 +304,7 @@ function ServicesContent() {
                     onClick={() => handleBookNow(service)}
                     className="block w-full text-center bg-amber-700 text-white px-4 py-2 rounded-md hover:bg-amber-800 transition-colors"
                   >
-                    Book Now
+                    Book Your Appointment
                   </button>
                 </div>
               </div>
@@ -324,7 +324,10 @@ function ServicesContent() {
             health and wellness.
           </p>
           <button
-            onClick={() => setIsBookingModalOpen(true)}
+            onClick={() => {
+              setSelectedService(null);
+              setIsBookingModalOpen(true);
+            }}
             className="inline-block bg-white text-amber-700 px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-100 transition-colors"
           >
             Book Your Appointment
@@ -336,6 +339,11 @@ function ServicesContent() {
         isOpen={!!selectedService}
         onClose={() => setSelectedService(null)}
         service={selectedService}
+        onBookNow={() => {
+          if (selectedService) {
+            handleBookNow(selectedService);
+          }
+        }}
       />
 
       {selectedService && (

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 interface ServiceModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onBookNow: () => void;
   service: {
     id: string;
     title: string;
@@ -17,7 +18,12 @@ interface ServiceModalProps {
   } | null;
 }
 
-const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
+const ServiceModal = ({
+  isOpen,
+  onClose,
+  onBookNow,
+  service,
+}: ServiceModalProps) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -86,7 +92,7 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
           </div>
 
           <button
-            onClick={onClose}
+            onClick={onBookNow}
             className="w-full bg-amber-700 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-amber-800 transition-colors"
           >
             Book This Service

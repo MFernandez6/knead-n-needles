@@ -44,6 +44,335 @@ const AVAILABLE_HOURS = [
   "7:30 PM",
 ];
 
+const SERVICES = [
+  {
+    id: "swedish",
+    title: "Swedish Massage",
+    subtitle: "The Tranquilizer",
+    image: "/images/swedish.jpg",
+    description:
+      "A full-body massage designed to promote relaxation and reduce stress.",
+    benefits: [
+      "Reduces stress",
+      "Improves circulation",
+      "Relieves muscle tension",
+    ],
+    duration: "60-90 minutes",
+    price: "100",
+    addOns: [
+      {
+        id: "cupping",
+        name: "Cupping",
+        price: 20,
+        description:
+          "Traditional therapy using suction cups to improve blood flow and relieve muscle tension.",
+      },
+      {
+        id: "hot-stones",
+        name: "Hot Stones",
+        price: 20,
+        description:
+          "Heated stones placed on key points to deeply relax muscles and improve circulation.",
+      },
+      {
+        id: "chirp-halo",
+        name: "Chirp Halo Muscle Stim",
+        price: 30,
+        description:
+          "Advanced muscle stimulation therapy using the Chirp Halo device for targeted pain relief.",
+      },
+      {
+        id: "hypervolt",
+        name: "Hypervolt",
+        price: 15,
+        description:
+          "Percussion therapy using the Hypervolt device to reduce muscle soreness and improve recovery.",
+      },
+      {
+        id: "cbd",
+        name: "CBD Oil and Cream",
+        price: 10,
+        description:
+          "Premium CBD products applied topically to enhance relaxation and reduce inflammation.",
+      },
+      {
+        id: "singing-bowls",
+        name: "Singing Bowls",
+        price: 15,
+        description:
+          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
+      },
+      {
+        id: "salt-scrub",
+        name: "Salt Scrub",
+        price: 30,
+        description:
+          "Exfoliating treatment using natural salts to rejuvenate skin and improve circulation.",
+      },
+    ],
+  },
+  {
+    id: "deep-tissue",
+    title: "Deep Tissue",
+    subtitle: "The Bulldozer",
+    image: "/images/deep-tissue.jpg",
+    description:
+      "A therapeutic massage that targets deep muscle layers to relieve chronic tension.",
+    benefits: [
+      "Relieves chronic pain",
+      "Improves posture",
+      "Increases range of motion",
+    ],
+    duration: "60-90 minutes",
+    price: "100",
+    addOns: [
+      {
+        id: "cupping",
+        name: "Cupping",
+        price: 20,
+        description:
+          "Traditional therapy using suction cups to improve blood flow and relieve muscle tension.",
+      },
+      {
+        id: "hot-stones",
+        name: "Hot Stones",
+        price: 20,
+        description:
+          "Heated stones placed on key points to deeply relax muscles and improve circulation.",
+      },
+      {
+        id: "chirp-halo",
+        name: "Chirp Halo Muscle Stim",
+        price: 30,
+        description:
+          "Advanced muscle stimulation therapy using the Chirp Halo device for targeted pain relief.",
+      },
+      {
+        id: "hypervolt",
+        name: "Hypervolt",
+        price: 15,
+        description:
+          "Percussion therapy using the Hypervolt device to reduce muscle soreness and improve recovery.",
+      },
+      {
+        id: "cbd",
+        name: "CBD Oil and Cream",
+        price: 10,
+        description:
+          "Premium CBD products applied topically to enhance relaxation and reduce inflammation.",
+      },
+      {
+        id: "singing-bowls",
+        name: "Singing Bowls",
+        price: 15,
+        description:
+          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
+      },
+      {
+        id: "salt-scrub",
+        name: "Salt Scrub",
+        price: 30,
+        description:
+          "Exfoliating treatment using natural salts to rejuvenate skin and improve circulation.",
+      },
+    ],
+  },
+  {
+    id: "sports",
+    title: "Sports Massage",
+    subtitle: "The Performance Enhancer",
+    image: "/images/sports.webp",
+    description:
+      "Specialized massage for athletes to improve performance and prevent injuries.",
+    benefits: [
+      "Prevents injuries",
+      "Improves athletic performance",
+      "Speeds up recovery time",
+    ],
+    duration: "60-90 minutes",
+    price: "100",
+    addOns: [
+      {
+        id: "cupping",
+        name: "Cupping",
+        price: 20,
+        description:
+          "Traditional therapy using suction cups to improve blood flow and relieve muscle tension.",
+      },
+      {
+        id: "hot-stones",
+        name: "Hot Stones",
+        price: 20,
+        description:
+          "Heated stones placed on key points to deeply relax muscles and improve circulation.",
+      },
+      {
+        id: "chirp-halo",
+        name: "Chirp Halo Muscle Stim",
+        price: 30,
+        description:
+          "Advanced muscle stimulation therapy using the Chirp Halo device for targeted pain relief.",
+      },
+      {
+        id: "hypervolt",
+        name: "Hypervolt",
+        price: 15,
+        description:
+          "Percussion therapy using the Hypervolt device to reduce muscle soreness and improve recovery.",
+      },
+      {
+        id: "cbd",
+        name: "CBD Oil and Cream",
+        price: 10,
+        description:
+          "Premium CBD products applied topically to enhance relaxation and reduce inflammation.",
+      },
+      {
+        id: "singing-bowls",
+        name: "Singing Bowls",
+        price: 15,
+        description:
+          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
+      },
+      {
+        id: "salt-scrub",
+        name: "Salt Scrub",
+        price: 30,
+        description:
+          "Exfoliating treatment using natural salts to rejuvenate skin and improve circulation.",
+      },
+    ],
+  },
+  {
+    id: "reflexology",
+    title: "Reflexology",
+    subtitle: "The Foot Whisperer",
+    image: "/images/reflexology.jpeg",
+    description:
+      "Foot massage that stimulates pressure points to improve overall health.",
+    benefits: ["Stress reduction", "Improved circulation", "Better sleep"],
+    duration: "30 minutes",
+    price: "40",
+    addOns: [
+      {
+        id: "cupping",
+        name: "Cupping",
+        price: 20,
+        description:
+          "Traditional therapy using suction cups to improve blood flow and relieve muscle tension.",
+      },
+      {
+        id: "hot-stones",
+        name: "Hot Stones",
+        price: 20,
+        description:
+          "Heated stones placed on key points to deeply relax muscles and improve circulation.",
+      },
+      {
+        id: "chirp-halo",
+        name: "Chirp Halo Muscle Stim",
+        price: 30,
+        description:
+          "Advanced muscle stimulation therapy using the Chirp Halo device for targeted pain relief.",
+      },
+      {
+        id: "hypervolt",
+        name: "Hypervolt",
+        price: 15,
+        description:
+          "Percussion therapy using the Hypervolt device to reduce muscle soreness and improve recovery.",
+      },
+      {
+        id: "cbd",
+        name: "CBD Oil and Cream",
+        price: 10,
+        description:
+          "Premium CBD products applied topically to enhance relaxation and reduce inflammation.",
+      },
+      {
+        id: "singing-bowls",
+        name: "Singing Bowls",
+        price: 15,
+        description:
+          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
+      },
+      {
+        id: "salt-scrub",
+        name: "Salt Scrub",
+        price: 30,
+        description:
+          "Exfoliating treatment using natural salts to rejuvenate skin and improve circulation.",
+      },
+    ],
+  },
+  {
+    id: "tmj",
+    title: "TMJ",
+    subtitle: "Please, don't bite my finger off",
+    image: "/images/tmj.jpg",
+    description:
+      "Specialized massage focusing on the temporomandibular joint and surrounding muscles.",
+    benefits: [
+      "Relieves jaw tension",
+      "Improves jaw mobility",
+      "Reduces TMJ pain",
+    ],
+    duration: "60 minutes",
+    price: "100",
+    addOns: [
+      {
+        id: "cupping",
+        name: "Cupping",
+        price: 20,
+        description:
+          "Traditional therapy using suction cups to improve blood flow and relieve muscle tension.",
+      },
+      {
+        id: "hot-stones",
+        name: "Hot Stones",
+        price: 20,
+        description:
+          "Heated stones placed on key points to deeply relax muscles and improve circulation.",
+      },
+      {
+        id: "chirp-halo",
+        name: "Chirp Halo Muscle Stim",
+        price: 30,
+        description:
+          "Advanced muscle stimulation therapy using the Chirp Halo device for targeted pain relief.",
+      },
+      {
+        id: "hypervolt",
+        name: "Hypervolt",
+        price: 15,
+        description:
+          "Percussion therapy using the Hypervolt device to reduce muscle soreness and improve recovery.",
+      },
+      {
+        id: "cbd",
+        name: "CBD Oil and Cream",
+        price: 10,
+        description:
+          "Premium CBD products applied topically to enhance relaxation and reduce inflammation.",
+      },
+      {
+        id: "singing-bowls",
+        name: "Singing Bowls",
+        price: 15,
+        description:
+          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
+      },
+      {
+        id: "salt-scrub",
+        name: "Salt Scrub",
+        price: 30,
+        description:
+          "Exfoliating treatment using natural salts to rejuvenate skin and improve circulation.",
+      },
+    ],
+  },
+];
+
 export default function BookingModal({
   isOpen,
   onClose,
@@ -65,6 +394,8 @@ export default function BookingModal({
     addDays(new Date(), 1)
   );
   const [selectedTime, setSelectedTime] = useState<string>("");
+  const [selectedService, setSelectedService] = useState<Service>(SERVICES[0]);
+  const [selectedDuration, setSelectedDuration] = useState<"60" | "90">("60");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -78,7 +409,7 @@ export default function BookingModal({
     (sum, addOn) => sum + addOn.price,
     0
   );
-  const basePrice = parseInt((service?.price || "0").replace(/[^0-9]/g, ""));
+  const basePrice = selectedDuration === "60" ? 100 : 150;
   const totalPrice = basePrice + totalAddOnsPrice;
 
   if (!isOpen) return null;
@@ -91,7 +422,8 @@ export default function BookingModal({
     try {
       // Prepare booking details
       const bookingDetails = {
-        service: service.title,
+        service: selectedService.title,
+        duration: `${selectedDuration} minutes`,
         date: format(selectedDate, "MMMM d, yyyy"),
         time: selectedTime,
         addOns: selectedAddOns.map((addOn) => addOn.name),
@@ -201,149 +533,201 @@ export default function BookingModal({
                           Complete Your Booking
                         </Dialog.Title>
 
-                        {/* Selected Service and Add-Ons Summary */}
+                        {/* Service Selection */}
                         <div className="mb-6">
-                          <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                            <h4 className="font-medium text-gray-900 mb-2">
-                              Selected Service
-                            </h4>
-                            <p className="text-gray-600">{service.title}</p>
-                            <p className="text-sm text-gray-500 mt-1">
-                              {service.duration}
-                            </p>
-                            <p className="text-amber-700 font-medium mt-1">
-                              ${basePrice}
-                            </p>
-                          </div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Select Service
+                          </label>
+                          <select
+                            value={selectedService.id}
+                            onChange={(e) => {
+                              const service = SERVICES.find(
+                                (s) => s.id === e.target.value
+                              );
+                              if (service) {
+                                setSelectedService(service);
+                              }
+                            }}
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm"
+                          >
+                            {SERVICES.map((service) => (
+                              <option key={service.id} value={service.id}>
+                                {service.title} - ${service.price}
+                              </option>
+                            ))}
+                          </select>
+                          <button
+                            type="button"
+                            onClick={onEditAddOns}
+                            className="mt-2 text-sm text-amber-700 hover:text-amber-800 font-medium"
+                          >
+                            Add Enhancements to Your Service
+                          </button>
+                        </div>
 
-                          {selectedAddOns.length > 0 && (
-                            <div className="bg-gray-50 rounded-lg p-4">
-                              <div className="flex justify-between items-center mb-2">
-                                <h4 className="font-medium text-gray-900">
-                                  Selected Add-Ons
-                                </h4>
-                                <button
-                                  type="button"
-                                  onClick={onEditAddOns}
-                                  className="text-amber-700 hover:text-amber-800 text-sm font-medium"
+                        {/* Selected Add-Ons Preview */}
+                        {selectedAddOns.length > 0 && (
+                          <div className="mb-6 bg-gray-50 rounded-lg p-4">
+                            <div className="flex justify-between items-center mb-3">
+                              <h4 className="text-sm font-medium text-gray-700">
+                                Selected Add-Ons
+                              </h4>
+                              <button
+                                type="button"
+                                onClick={onEditAddOns}
+                                className="text-sm text-amber-700 hover:text-amber-800 font-medium"
+                              >
+                                Edit
+                              </button>
+                            </div>
+                            <div className="space-y-2">
+                              {selectedAddOns.map((addOn) => (
+                                <div
+                                  key={addOn.id}
+                                  className="flex justify-between items-center text-sm"
                                 >
-                                  Edit Add-Ons
-                                </button>
-                              </div>
-                              <div className="space-y-2">
-                                {selectedAddOns.map((addOn) => (
-                                  <div
-                                    key={addOn.id}
-                                    className="flex justify-between items-center text-sm"
-                                  >
-                                    <span className="text-gray-600">
-                                      {addOn.name}
-                                    </span>
-                                    <span className="text-amber-700 font-medium">
-                                      +${addOn.price}
-                                    </span>
-                                  </div>
-                                ))}
-                                <div className="border-t border-gray-200 pt-2 mt-2">
-                                  <div className="flex justify-between items-center font-medium">
-                                    <span className="text-gray-900">
-                                      Total Add-Ons
-                                    </span>
-                                    <span className="text-amber-700">
-                                      +${totalAddOnsPrice}
-                                    </span>
-                                  </div>
+                                  <span className="text-gray-600">
+                                    {addOn.name}
+                                  </span>
+                                  <span className="text-amber-700 font-medium">
+                                    +${addOn.price}
+                                  </span>
                                 </div>
+                              ))}
+                              <div className="pt-2 border-t border-gray-200 flex justify-between items-center">
+                                <span className="text-gray-700 font-medium">
+                                  Add-Ons Total
+                                </span>
+                                <span className="text-amber-700 font-medium">
+                                  +${totalAddOnsPrice}
+                                </span>
                               </div>
                             </div>
-                          )}
-                        </div>
+                          </div>
+                        )}
 
-                        {/* Date and Time Selection */}
+                        {/* Duration Selection (if applicable) */}
+                        {selectedService.duration.includes("60-90") && (
+                          <div className="mb-6">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Select Duration
+                            </label>
+                            <div className="flex space-x-4">
+                              <button
+                                type="button"
+                                onClick={() => setSelectedDuration("60")}
+                                className={`flex-1 py-2 px-4 rounded-md text-sm font-medium ${
+                                  selectedDuration === "60"
+                                    ? "bg-amber-700 text-white"
+                                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                }`}
+                              >
+                                60 Minutes
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setSelectedDuration("90")}
+                                className={`flex-1 py-2 px-4 rounded-md text-sm font-medium ${
+                                  selectedDuration === "90"
+                                    ? "bg-amber-700 text-white"
+                                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                }`}
+                              >
+                                90 Minutes
+                              </button>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Date Selection */}
                         <div className="mb-6">
-                          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                            <div>
-                              <label
-                                htmlFor="date"
-                                className="block text-sm font-medium text-gray-700"
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Select Date
+                          </label>
+                          <input
+                            type="date"
+                            min={format(addDays(new Date(), 1), "yyyy-MM-dd")}
+                            value={format(selectedDate, "yyyy-MM-dd")}
+                            onChange={(e) =>
+                              setSelectedDate(new Date(e.target.value))
+                            }
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm"
+                          />
+                        </div>
+
+                        {/* Time Selection */}
+                        <div className="mb-6">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Select Time
+                          </label>
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            {AVAILABLE_HOURS.map((time) => (
+                              <button
+                                key={time}
+                                type="button"
+                                onClick={() => setSelectedTime(time)}
+                                className={`py-2 px-3 rounded-md text-sm font-medium ${
+                                  selectedTime === time
+                                    ? "bg-amber-700 text-white"
+                                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                }`}
                               >
-                                Date
-                              </label>
-                              <input
-                                type="date"
-                                id="date"
-                                name="date"
-                                min={format(
-                                  addDays(new Date(), 1),
-                                  "yyyy-MM-dd"
-                                )}
-                                value={format(selectedDate, "yyyy-MM-dd")}
-                                onChange={(e) =>
-                                  setSelectedDate(new Date(e.target.value))
-                                }
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm"
-                                required
-                              />
+                                {time}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Total Price Summary */}
+                        <div className="mb-6 bg-gray-50 rounded-lg p-4">
+                          <div className="space-y-2">
+                            <div className="flex justify-between items-center text-sm">
+                              <span className="text-gray-600">
+                                Base Service
+                              </span>
+                              <span className="text-gray-700">
+                                ${basePrice}
+                              </span>
                             </div>
-                            <div>
-                              <label
-                                htmlFor="time"
-                                className="block text-sm font-medium text-gray-700"
-                              >
-                                Time
-                              </label>
-                              <select
-                                id="time"
-                                name="time"
-                                value={selectedTime}
-                                onChange={(e) =>
-                                  setSelectedTime(e.target.value)
-                                }
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm"
-                                required
-                              >
-                                <option value="">Select a time</option>
-                                {AVAILABLE_HOURS.map((time) => (
-                                  <option key={time} value={time}>
-                                    {time}
-                                  </option>
-                                ))}
-                              </select>
+                            {selectedAddOns.length > 0 && (
+                              <div className="flex justify-between items-center text-sm">
+                                <span className="text-gray-600">Add-Ons</span>
+                                <span className="text-gray-700">
+                                  +${totalAddOnsPrice}
+                                </span>
+                              </div>
+                            )}
+                            <div className="pt-2 border-t border-gray-200 flex justify-between items-center">
+                              <span className="text-gray-900 font-medium">
+                                Total
+                              </span>
+                              <span className="text-amber-700 font-medium text-lg">
+                                ${totalPrice}
+                              </span>
                             </div>
                           </div>
                         </div>
 
-                        {/* Total Price */}
-                        <div className="mb-6 p-4 bg-amber-50 rounded-lg">
-                          <div className="flex justify-between items-center">
-                            <span className="text-lg font-medium text-gray-900">
-                              Total Price
-                            </span>
-                            <span className="text-xl font-bold text-amber-700">
-                              ${totalPrice}
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Booking Form */}
+                        {/* Personal Information */}
                         <div className="space-y-4">
                           <div>
                             <label
                               htmlFor="name"
                               className="block text-sm font-medium text-gray-700"
                             >
-                              Name
+                              Full Name
                             </label>
                             <input
                               type="text"
                               name="name"
                               id="name"
+                              required
                               value={formData.name}
                               onChange={handleInputChange}
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm"
-                              required
                             />
                           </div>
+
                           <div>
                             <label
                               htmlFor="email"
@@ -355,34 +739,35 @@ export default function BookingModal({
                               type="email"
                               name="email"
                               id="email"
+                              required
                               value={formData.email}
                               onChange={handleInputChange}
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm"
-                              required
                             />
                           </div>
+
                           <div>
                             <label
                               htmlFor="phone"
                               className="block text-sm font-medium text-gray-700"
                             >
-                              Phone
+                              Phone Number
                             </label>
                             <input
                               type="tel"
                               name="phone"
                               id="phone"
+                              required
                               value={formData.phone}
                               onChange={handleInputChange}
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm"
-                              required
                             />
                           </div>
                         </div>
 
                         {error && (
-                          <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-md">
-                            <p className="text-red-700 text-sm">{error}</p>
+                          <div className="mt-4 text-red-600 text-sm">
+                            {error}
                           </div>
                         )}
 

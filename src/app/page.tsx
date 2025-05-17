@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import BookingModal from "@/components/BookingModal";
+import AddOnsModal from "@/components/AddOnsModal";
 
 interface AddOn {
   id: string;
@@ -27,16 +28,77 @@ const defaultService = {
   ],
   duration: "60 minutes",
   price: "80",
-  addOns: [],
+  addOns: [
+    {
+      id: "cupping",
+      name: "Cupping",
+      price: 20,
+      description:
+        "Traditional therapy using suction cups to improve blood flow and relieve muscle tension.",
+    },
+    {
+      id: "hot-stones",
+      name: "Hot Stones",
+      price: 20,
+      description:
+        "Heated stones placed on key points to deeply relax muscles and improve circulation.",
+    },
+    {
+      id: "chirp-halo",
+      name: "Chirp Halo Muscle Stim",
+      price: 30,
+      description:
+        "Advanced muscle stimulation therapy using the Chirp Halo device for targeted pain relief.",
+    },
+    {
+      id: "hypervolt",
+      name: "Hypervolt",
+      price: 15,
+      description:
+        "Percussion therapy using the Hypervolt device to reduce muscle soreness and improve recovery.",
+    },
+    {
+      id: "cbd",
+      name: "CBD Oil and Cream",
+      price: 10,
+      description:
+        "Premium CBD products applied topically to enhance relaxation and reduce inflammation.",
+    },
+    {
+      id: "singing-bowls",
+      name: "Singing Bowls",
+      price: 15,
+      description:
+        "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
+    },
+    {
+      id: "salt-scrub",
+      name: "Salt Scrub",
+      price: 30,
+      description:
+        "Exfoliating treatment using natural salts to rejuvenate skin and improve circulation.",
+    },
+  ],
 };
 
 export default function Home() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const selectedAddOns: AddOn[] = [];
+  const [isAddOnsModalOpen, setIsAddOnsModalOpen] = useState(false);
+  const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>([]);
 
   const handleEditAddOns = () => {
-    // Redirect to services page for add-on selection
-    window.location.href = "/services";
+    setIsBookingModalOpen(false);
+    setIsAddOnsModalOpen(true);
+  };
+
+  const handleAddOnsSelected = (addOns: AddOn[]) => {
+    setSelectedAddOns(addOns);
+  };
+
+  const handleAddOnsContinue = (addOns: AddOn[]) => {
+    setSelectedAddOns(addOns);
+    setIsAddOnsModalOpen(false);
+    setIsBookingModalOpen(true);
   };
 
   return (
@@ -61,7 +123,10 @@ export default function Home() {
             rejuvenate
           </p>
           <button
-            onClick={() => setIsBookingModalOpen(true)}
+            onClick={() => {
+              setSelectedAddOns([]);
+              setIsBookingModalOpen(true);
+            }}
             className="bg-amber-700 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-amber-800 transition-colors"
           >
             Book Your Session
@@ -86,12 +151,17 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Swedish Massage</h3>
+                <p className="text-amber-700 font-medium mb-2">
+                  The Tranquilizer
+                </p>
                 <p className="text-gray-600 mb-4">
-                  A gentle, relaxing massage that promotes overall wellness and
-                  stress relief.
+                  The Monday blues recovery, the mid week sedative and finally
+                  the &apos;it&apos;s Friday, I made it!&apos; This treatment
+                  uses a light to medium pressure massage focused to relieve
+                  both the mental and physical aspects of the body.
                 </p>
                 <Link
-                  href={`/services?service=swedish`}
+                  href="/services?service=swedish"
                   className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
@@ -111,12 +181,15 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Deep Tissue</h3>
+                <p className="text-amber-700 font-medium mb-2">The Bulldozer</p>
                 <p className="text-gray-600 mb-4">
-                  Targeted pressure to release chronic muscle tension and
-                  improve mobility.
+                  Don&apos;t let the name scare you, a skilled massage therapist
+                  can get into those sore muscles WITHOUT making you feel like
+                  you just finished a marathon. Using firm pressure we pinpoint
+                  exactly where it is affecting you.
                 </p>
                 <Link
-                  href={`/services?service=deep-tissue`}
+                  href="/services?service=deep-tissue"
                   className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
@@ -136,12 +209,17 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Sports Massage</h3>
+                <p className="text-amber-700 font-medium mb-2">
+                  The Performance Enhancer
+                </p>
                 <p className="text-gray-600 mb-4">
-                  Specialized massage for athletes to enhance performance and
-                  recovery.
+                  Whether you&apos;re a weekend warrior or a professional
+                  athlete, this is your secret weapon! Think of it as a tune-up
+                  for your body&apos;s engine. We&apos;ll get those muscles
+                  firing on all cylinders.
                 </p>
                 <Link
-                  href={`/services?service=sports`}
+                  href="/services?service=sports"
                   className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
@@ -158,44 +236,22 @@ export default function Home() {
                   fill
                   className="object-cover"
                 />
+                <div className="absolute top-4 right-4 bg-amber-700 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  Coming Soon
+                </div>
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">
                   Acupuncture Therapy
                 </h3>
+                <p className="text-amber-700 font-medium mb-2">Coming Soon</p>
                 <p className="text-gray-600 mb-4">
                   Traditional Chinese medicine technique that involves inserting
                   thin needles into specific points on the body to treat pain
-                  and various conditions
+                  and various conditions.
                 </p>
                 <Link
-                  href={`/services?service=acupuncture`}
-                  className="text-amber-700 hover:text-amber-800 font-medium"
-                >
-                  Learn More →
-                </Link>
-              </div>
-            </div>
-
-            {/* Cupping */}
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105">
-              <div className="relative h-48">
-                <Image
-                  src="/images/cupping.jpg"
-                  alt="cupping"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Cupping Therapy</h3>
-                <p className="text-gray-600 mb-4">
-                  An alternative medicine practice where cups are placed on the
-                  skin to create suction, potentially relieving pain and
-                  promoting healing.
-                </p>
-                <Link
-                  href={`/services?service=cupping`}
+                  href="/services?service=acupuncture"
                   className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
@@ -208,19 +264,53 @@ export default function Home() {
               <div className="relative h-48">
                 <Image
                   src="/images/reflexology.jpeg"
-                  alt="reflexology"
+                  alt="Reflexology"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Reflexology</h3>
+                <p className="text-amber-700 font-medium mb-2">
+                  The Foot Whisperer
+                </p>
                 <p className="text-gray-600 mb-4">
-                  Reflexology uses gentle to firm pressure on different pressure
-                  points of the feet, hands, and ears.
+                  Who knew your feet held the map to your body&apos;s wellness?
+                  It&apos;s like having a remote control for your entire system!
+                  Through gentle to firm pressure on specific points, we can
+                  help your body find its natural balance.
                 </p>
                 <Link
-                  href={`/services?service=reflexology`}
+                  href="/services?service=reflexology"
+                  className="text-amber-700 hover:text-amber-800 font-medium"
+                >
+                  Learn More →
+                </Link>
+              </div>
+            </div>
+
+            {/* TMJ */}
+            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-sm transition-transform duration-300 hover:scale-105">
+              <div className="relative h-48">
+                <Image
+                  src="/images/tmj.jpg"
+                  alt="TMJ Massage"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">TMJ</h3>
+                <p className="text-amber-700 font-medium mb-2">
+                  Please, don&apos;t bite my finger off
+                </p>
+                <p className="text-gray-600 mb-4">
+                  A specialized type of massage focusing on the muscles and
+                  tissues surrounding the temporomandibular joint, anterior part
+                  of the neck, occipital area of the neck, shoulders and back.
+                </p>
+                <Link
+                  href="/services?service=tmj"
                   className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
@@ -234,7 +324,9 @@ export default function Home() {
       {/* Why Choose Us */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-6">Why Choose Needle & Knead</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center">
+            Why Choose Needle & Knead
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -306,12 +398,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Modals */}
       <BookingModal
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
         service={defaultService}
         selectedAddOns={selectedAddOns}
         onEditAddOns={handleEditAddOns}
+      />
+
+      <AddOnsModal
+        isOpen={isAddOnsModalOpen}
+        onClose={() => setIsAddOnsModalOpen(false)}
+        addOns={defaultService.addOns}
+        onAddOnsSelected={handleAddOnsSelected}
+        onContinue={handleAddOnsContinue}
       />
     </div>
   );
