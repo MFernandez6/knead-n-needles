@@ -102,12 +102,37 @@ export default function AddOnsModal({
                 </div>
                 <div className="sm:flex sm:items-start">
                   <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
-                    <Dialog.Title
-                      as="h3"
-                      className="text-2xl font-semibold leading-6 text-gray-900 mb-4"
-                    >
-                      Available Add-Ons
-                    </Dialog.Title>
+                    <div className="flex justify-between items-center mb-4">
+                      <button
+                        onClick={() => {
+                          onContinue?.(selectedAddOns);
+                          onClose();
+                        }}
+                        className="text-gray-600 hover:text-gray-900 flex items-center space-x-1"
+                      >
+                        <svg
+                          className="h-5 w-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                          />
+                        </svg>
+                        <span>Back</span>
+                      </button>
+                      <Dialog.Title
+                        as="h3"
+                        className="text-2xl font-semibold leading-6 text-gray-900"
+                      >
+                        Available Add-Ons
+                      </Dialog.Title>
+                      <div className="w-20" /> {/* Spacer for alignment */}
+                    </div>
                     <div className="mt-4">
                       <div className="grid grid-cols-1 gap-4">
                         {addOns.map((addOn) => (

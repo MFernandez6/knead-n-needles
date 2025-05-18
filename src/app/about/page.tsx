@@ -28,12 +28,6 @@ export default function AboutPage() {
               fill
               className="object-cover"
               priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              quality={90}
-              unoptimized
-              onError={(e) => {
-                console.error("Error loading image:", e);
-              }}
             />
           </div>
         </div>
