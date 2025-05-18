@@ -3,7 +3,7 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { format, addDays } from "date-fns";
+import { addDays, format } from "date-fns";
 
 interface AddOn {
   id: string;
@@ -44,335 +44,6 @@ const AVAILABLE_HOURS = [
   "7:30 PM",
 ];
 
-const SERVICES = [
-  {
-    id: "swedish",
-    title: "Swedish Massage",
-    subtitle: "The Tranquilizer",
-    image: "/images/swedish.jpg",
-    description:
-      "A full-body massage designed to promote relaxation and reduce stress.",
-    benefits: [
-      "Reduces stress",
-      "Improves circulation",
-      "Relieves muscle tension",
-    ],
-    duration: "60-90 minutes",
-    price: "100",
-    addOns: [
-      {
-        id: "cupping",
-        name: "Cupping",
-        price: 20,
-        description:
-          "Traditional therapy using suction cups to improve blood flow and relieve muscle tension.",
-      },
-      {
-        id: "hot-stones",
-        name: "Hot Stones",
-        price: 20,
-        description:
-          "Heated stones placed on key points to deeply relax muscles and improve circulation.",
-      },
-      {
-        id: "chirp-halo",
-        name: "Chirp Halo Muscle Stim",
-        price: 30,
-        description:
-          "Advanced muscle stimulation therapy using the Chirp Halo device for targeted pain relief.",
-      },
-      {
-        id: "hypervolt",
-        name: "Hypervolt",
-        price: 15,
-        description:
-          "Percussion therapy using the Hypervolt device to reduce muscle soreness and improve recovery.",
-      },
-      {
-        id: "cbd",
-        name: "CBD Oil and Cream",
-        price: 10,
-        description:
-          "Premium CBD products applied topically to enhance relaxation and reduce inflammation.",
-      },
-      {
-        id: "singing-bowls",
-        name: "Singing Bowls",
-        price: 15,
-        description:
-          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
-      },
-      {
-        id: "salt-scrub",
-        name: "Salt Scrub",
-        price: 30,
-        description:
-          "Exfoliating treatment using natural salts to rejuvenate skin and improve circulation.",
-      },
-    ],
-  },
-  {
-    id: "deep-tissue",
-    title: "Deep Tissue",
-    subtitle: "The Bulldozer",
-    image: "/images/deep-tissue.jpg",
-    description:
-      "A therapeutic massage that targets deep muscle layers to relieve chronic tension.",
-    benefits: [
-      "Relieves chronic pain",
-      "Improves posture",
-      "Increases range of motion",
-    ],
-    duration: "60-90 minutes",
-    price: "100",
-    addOns: [
-      {
-        id: "cupping",
-        name: "Cupping",
-        price: 20,
-        description:
-          "Traditional therapy using suction cups to improve blood flow and relieve muscle tension.",
-      },
-      {
-        id: "hot-stones",
-        name: "Hot Stones",
-        price: 20,
-        description:
-          "Heated stones placed on key points to deeply relax muscles and improve circulation.",
-      },
-      {
-        id: "chirp-halo",
-        name: "Chirp Halo Muscle Stim",
-        price: 30,
-        description:
-          "Advanced muscle stimulation therapy using the Chirp Halo device for targeted pain relief.",
-      },
-      {
-        id: "hypervolt",
-        name: "Hypervolt",
-        price: 15,
-        description:
-          "Percussion therapy using the Hypervolt device to reduce muscle soreness and improve recovery.",
-      },
-      {
-        id: "cbd",
-        name: "CBD Oil and Cream",
-        price: 10,
-        description:
-          "Premium CBD products applied topically to enhance relaxation and reduce inflammation.",
-      },
-      {
-        id: "singing-bowls",
-        name: "Singing Bowls",
-        price: 15,
-        description:
-          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
-      },
-      {
-        id: "salt-scrub",
-        name: "Salt Scrub",
-        price: 30,
-        description:
-          "Exfoliating treatment using natural salts to rejuvenate skin and improve circulation.",
-      },
-    ],
-  },
-  {
-    id: "sports",
-    title: "Sports Massage",
-    subtitle: "The Performance Enhancer",
-    image: "/images/sports.webp",
-    description:
-      "Specialized massage for athletes to improve performance and prevent injuries.",
-    benefits: [
-      "Prevents injuries",
-      "Improves athletic performance",
-      "Speeds up recovery time",
-    ],
-    duration: "60-90 minutes",
-    price: "100",
-    addOns: [
-      {
-        id: "cupping",
-        name: "Cupping",
-        price: 20,
-        description:
-          "Traditional therapy using suction cups to improve blood flow and relieve muscle tension.",
-      },
-      {
-        id: "hot-stones",
-        name: "Hot Stones",
-        price: 20,
-        description:
-          "Heated stones placed on key points to deeply relax muscles and improve circulation.",
-      },
-      {
-        id: "chirp-halo",
-        name: "Chirp Halo Muscle Stim",
-        price: 30,
-        description:
-          "Advanced muscle stimulation therapy using the Chirp Halo device for targeted pain relief.",
-      },
-      {
-        id: "hypervolt",
-        name: "Hypervolt",
-        price: 15,
-        description:
-          "Percussion therapy using the Hypervolt device to reduce muscle soreness and improve recovery.",
-      },
-      {
-        id: "cbd",
-        name: "CBD Oil and Cream",
-        price: 10,
-        description:
-          "Premium CBD products applied topically to enhance relaxation and reduce inflammation.",
-      },
-      {
-        id: "singing-bowls",
-        name: "Singing Bowls",
-        price: 15,
-        description:
-          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
-      },
-      {
-        id: "salt-scrub",
-        name: "Salt Scrub",
-        price: 30,
-        description:
-          "Exfoliating treatment using natural salts to rejuvenate skin and improve circulation.",
-      },
-    ],
-  },
-  {
-    id: "reflexology",
-    title: "Reflexology",
-    subtitle: "The Foot Whisperer",
-    image: "/images/reflexology.jpeg",
-    description:
-      "Foot massage that stimulates pressure points to improve overall health.",
-    benefits: ["Stress reduction", "Improved circulation", "Better sleep"],
-    duration: "30 minutes",
-    price: "40",
-    addOns: [
-      {
-        id: "cupping",
-        name: "Cupping",
-        price: 20,
-        description:
-          "Traditional therapy using suction cups to improve blood flow and relieve muscle tension.",
-      },
-      {
-        id: "hot-stones",
-        name: "Hot Stones",
-        price: 20,
-        description:
-          "Heated stones placed on key points to deeply relax muscles and improve circulation.",
-      },
-      {
-        id: "chirp-halo",
-        name: "Chirp Halo Muscle Stim",
-        price: 30,
-        description:
-          "Advanced muscle stimulation therapy using the Chirp Halo device for targeted pain relief.",
-      },
-      {
-        id: "hypervolt",
-        name: "Hypervolt",
-        price: 15,
-        description:
-          "Percussion therapy using the Hypervolt device to reduce muscle soreness and improve recovery.",
-      },
-      {
-        id: "cbd",
-        name: "CBD Oil and Cream",
-        price: 10,
-        description:
-          "Premium CBD products applied topically to enhance relaxation and reduce inflammation.",
-      },
-      {
-        id: "singing-bowls",
-        name: "Singing Bowls",
-        price: 15,
-        description:
-          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
-      },
-      {
-        id: "salt-scrub",
-        name: "Salt Scrub",
-        price: 30,
-        description:
-          "Exfoliating treatment using natural salts to rejuvenate skin and improve circulation.",
-      },
-    ],
-  },
-  {
-    id: "tmj",
-    title: "TMJ",
-    subtitle: "Please, don't bite my finger off",
-    image: "/images/tmj.jpg",
-    description:
-      "Specialized massage focusing on the temporomandibular joint and surrounding muscles.",
-    benefits: [
-      "Relieves jaw tension",
-      "Improves jaw mobility",
-      "Reduces TMJ pain",
-    ],
-    duration: "60 minutes",
-    price: "100",
-    addOns: [
-      {
-        id: "cupping",
-        name: "Cupping",
-        price: 20,
-        description:
-          "Traditional therapy using suction cups to improve blood flow and relieve muscle tension.",
-      },
-      {
-        id: "hot-stones",
-        name: "Hot Stones",
-        price: 20,
-        description:
-          "Heated stones placed on key points to deeply relax muscles and improve circulation.",
-      },
-      {
-        id: "chirp-halo",
-        name: "Chirp Halo Muscle Stim",
-        price: 30,
-        description:
-          "Advanced muscle stimulation therapy using the Chirp Halo device for targeted pain relief.",
-      },
-      {
-        id: "hypervolt",
-        name: "Hypervolt",
-        price: 15,
-        description:
-          "Percussion therapy using the Hypervolt device to reduce muscle soreness and improve recovery.",
-      },
-      {
-        id: "cbd",
-        name: "CBD Oil and Cream",
-        price: 10,
-        description:
-          "Premium CBD products applied topically to enhance relaxation and reduce inflammation.",
-      },
-      {
-        id: "singing-bowls",
-        name: "Singing Bowls",
-        price: 15,
-        description:
-          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
-      },
-      {
-        id: "salt-scrub",
-        name: "Salt Scrub",
-        price: 30,
-        description:
-          "Exfoliating treatment using natural salts to rejuvenate skin and improve circulation.",
-      },
-    ],
-  },
-];
-
 export default function BookingModal({
   isOpen,
   onClose,
@@ -394,7 +65,6 @@ export default function BookingModal({
     addDays(new Date(), 1)
   );
   const [selectedTime, setSelectedTime] = useState<string>("");
-  const [selectedService, setSelectedService] = useState<Service>(SERVICES[0]);
   const [selectedDuration, setSelectedDuration] = useState<"60" | "90">("60");
   const [formData, setFormData] = useState({
     name: "",
@@ -422,7 +92,7 @@ export default function BookingModal({
     try {
       // Prepare booking details
       const bookingDetails = {
-        service: selectedService.title,
+        service: service.title,
         duration: `${selectedDuration} minutes`,
         date: format(selectedDate, "MMMM d, yyyy"),
         time: selectedTime,
@@ -536,26 +206,14 @@ export default function BookingModal({
                         {/* Service Selection */}
                         <div className="mb-6">
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Select Service
+                            Service
                           </label>
-                          <select
-                            value={selectedService.id}
-                            onChange={(e) => {
-                              const service = SERVICES.find(
-                                (s) => s.id === e.target.value
-                              );
-                              if (service) {
-                                setSelectedService(service);
-                              }
-                            }}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm"
-                          >
-                            {SERVICES.map((service) => (
-                              <option key={service.id} value={service.id}>
-                                {service.title} - ${service.price}
-                              </option>
-                            ))}
-                          </select>
+                          <div className="text-gray-900 font-medium">
+                            {service.title}
+                          </div>
+                          <div className="text-gray-600">
+                            {service.subtitle}
+                          </div>
                           <button
                             type="button"
                             onClick={onEditAddOns}
@@ -607,7 +265,7 @@ export default function BookingModal({
                         )}
 
                         {/* Duration Selection (if applicable) */}
-                        {selectedService.duration.includes("60-90") && (
+                        {service.duration.includes("60-90") && (
                           <div className="mb-6">
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                               Select Duration

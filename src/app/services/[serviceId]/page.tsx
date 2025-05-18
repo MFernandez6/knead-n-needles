@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { useParams } from "next/navigation";
@@ -290,10 +291,10 @@ const SERVICES: Service[] = [
   {
     id: "tmj",
     title: "TMJ",
-    subtitle: "Please, don't bite my finger off",
+    subtitle: "Please, don&apos;t bite my finger off",
     image: "/images/tmj.jpg",
     description:
-      "Specialized massage focusing on the temporomandibular joint and surrounding muscles.",
+      "A specialized type of massage focusing on the muscles and tissues surrounding the temporomandibular joint, anterior part of the neck, occipital area of the neck, shoulders and back.",
     benefits: [
       "Relieves jaw tension",
       "Improves jaw mobility",
