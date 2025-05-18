@@ -161,7 +161,7 @@ export default function Home() {
                   both the mental and physical aspects of the body.
                 </p>
                 <Link
-                  href="/services?service=swedish"
+                  href="/services/swedish"
                   className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
@@ -189,7 +189,7 @@ export default function Home() {
                   exactly where it is affecting you.
                 </p>
                 <Link
-                  href="/services?service=deep-tissue"
+                  href="/services/deep-tissue"
                   className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
@@ -219,7 +219,7 @@ export default function Home() {
                   firing on all cylinders.
                 </p>
                 <Link
-                  href="/services?service=sports"
+                  href="/services/sports"
                   className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
@@ -251,7 +251,7 @@ export default function Home() {
                   and various conditions.
                 </p>
                 <Link
-                  href="/services?service=acupuncture"
+                  href="/services/acupuncture"
                   className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
@@ -281,7 +281,7 @@ export default function Home() {
                   help your body find its natural balance.
                 </p>
                 <Link
-                  href="/services?service=reflexology"
+                  href="/services/reflexology"
                   className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
@@ -310,7 +310,7 @@ export default function Home() {
                   of the neck, occipital area of the neck, shoulders and back.
                 </p>
                 <Link
-                  href="/services?service=tmj"
+                  href="/services/tmj"
                   className="text-amber-700 hover:text-amber-800 font-medium"
                 >
                   Learn More →
