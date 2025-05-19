@@ -397,16 +397,21 @@ export default function ServicePage() {
     setIsBookingModalOpen(true);
   };
 
+  const handleBookNow = () => {
+    setSelectedAddOns([]);
+    setIsBookingModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Back Button */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <button
-          onClick={() => router.push("/")}
-          className="inline-flex items-center text-amber-700 hover:text-amber-800 font-medium"
+          onClick={() => router.back()}
+          className="flex items-center text-gray-600 hover:text-gray-900"
         >
           <ArrowLeftIcon className="h-5 w-5 mr-2" />
-          Back to Home
+          Back to Services
         </button>
       </div>
 
@@ -459,7 +464,7 @@ export default function ServicePage() {
 
             <div className="mt-8">
               <button
-                onClick={() => setIsBookingModalOpen(true)}
+                onClick={handleBookNow}
                 className="w-full bg-amber-700 text-white px-6 py-3 rounded-md hover:bg-amber-800 transition-colors font-medium"
               >
                 Book Now
@@ -473,7 +478,6 @@ export default function ServicePage() {
       <BookingModal
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
-        service={service}
         selectedAddOns={selectedAddOns}
         onEditAddOns={handleEditAddOns}
       />
