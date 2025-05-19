@@ -11,24 +11,6 @@ interface AddOn {
   description: string;
 }
 
-// Define a default service for the navbar booking
-const defaultService = {
-  id: "general",
-  title: "General Massage",
-  subtitle: "Relaxation and Wellness",
-  image: "/images/general-massage.jpg",
-  description:
-    "A full-body massage designed to promote relaxation and reduce stress.",
-  benefits: [
-    "Reduces stress",
-    "Improves circulation",
-    "Relieves muscle tension",
-  ],
-  duration: "60 minutes",
-  price: "80",
-  addOns: [],
-};
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -156,7 +138,6 @@ const Navbar = () => {
       <BookingModal
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
-        service={defaultService}
         selectedAddOns={selectedAddOns}
         onEditAddOns={handleEditAddOns}
       />
