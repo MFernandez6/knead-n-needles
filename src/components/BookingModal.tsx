@@ -28,7 +28,6 @@ interface Service {
 interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
-  service: Service;
   selectedAddOns: AddOn[];
   onEditAddOns: () => void;
 }
@@ -44,10 +43,101 @@ const AVAILABLE_HOURS = [
   "7:30 PM",
 ];
 
+const AVAILABLE_SERVICES = [
+  {
+    id: "swedish",
+    title: "Swedish Massage",
+    subtitle: "The Tranquilizer",
+    image: "/images/swedish.jpg",
+    description:
+      "The Monday blues recovery, the mid week sedative and finally the 'it's Friday, I made it!' This treatment uses a light to medium pressure massage focused to relieve both the mental and physical aspects of the body.",
+    duration: "60 minutes",
+    price: "100",
+    benefits: [
+      "Reduces stress and anxiety",
+      "Improves circulation",
+      "Relieves muscle tension",
+      "Promotes relaxation",
+    ],
+  },
+  {
+    id: "deep-tissue",
+    title: "Deep Tissue",
+    subtitle: "The Bulldozer",
+    image: "/images/deep-tissue.jpg",
+    description:
+      "Don't let the name scare you, a skilled massage therapist can get into those sore muscles WITHOUT making you feel like you just finished a marathon. Using firm pressure we pinpoint exactly where it is affecting you.",
+    duration: "60 minutes",
+    price: "100",
+    benefits: [
+      "Targets chronic pain",
+      "Breaks down scar tissue",
+      "Improves range of motion",
+      "Relieves deep muscle tension",
+    ],
+  },
+  {
+    id: "sports",
+    title: "Sports Massage",
+    subtitle: "The Performance Enhancer",
+    image: "/images/sports.webp",
+    description:
+      "Whether you're a weekend warrior or a professional athlete, this is your secret weapon! Think of it as a tune-up for your body's engine. We'll get those muscles firing on all cylinders.",
+    duration: "60 minutes",
+    price: "100",
+    benefits: [
+      "Enhances athletic performance",
+      "Prevents injuries",
+      "Speeds up recovery",
+      "Improves flexibility",
+    ],
+  },
+  {
+    id: "reflexology",
+    title: "Reflexology",
+    subtitle: "The Foot Whisperer",
+    image: "/images/reflexology.jpeg",
+    description:
+      "Who knew your feet held the map to your body's wellness? It's like having a remote control for your entire system! Through gentle to firm pressure on specific points, we can help your body find its natural balance.",
+    duration: "30 minutes",
+    price: "40",
+    benefits: [
+      "Promotes natural healing",
+      "Improves circulation",
+      "Reduces stress",
+      "Enhances overall wellness",
+    ],
+  },
+  {
+    id: "tmj",
+    title: "TMJ",
+    subtitle: "Please, don't bite my finger off",
+    image: "/images/tmj.jpg",
+    description:
+      "A specialized type of massage focusing on the muscles and tissues surrounding the temporomandibular joint, anterior part of the neck, occipital area of the neck, shoulders and back.",
+    duration: "60 minutes",
+    price: "100",
+    benefits: [
+      "Relieves jaw tension",
+      "Reduces headaches",
+      "Improves jaw mobility",
+      "Alleviates neck pain",
+    ],
+  },
+];
+
 export default function BookingModal({
   isOpen,
   onClose,
-  service = {
+  selectedAddOns = [],
+  onEditAddOns,
+}: BookingModalProps) {
+  const [selectedDate, setSelectedDate] = useState<Date>(
+    addDays(new Date(), 1)
+  );
+  const [selectedTime, setSelectedTime] = useState<string>("");
+  const [selectedDuration, setSelectedDuration] = useState<"60" | "90">("60");
+  const [selectedService, setSelectedService] = useState<Service>({
     id: "",
     title: "",
     subtitle: "",
@@ -57,15 +147,7 @@ export default function BookingModal({
     duration: "",
     price: "0",
     addOns: [],
-  },
-  selectedAddOns = [],
-  onEditAddOns,
-}: BookingModalProps) {
-  const [selectedDate, setSelectedDate] = useState<Date>(
-    addDays(new Date(), 1)
-  );
-  const [selectedTime, setSelectedTime] = useState<string>("");
-  const [selectedDuration, setSelectedDuration] = useState<"60" | "90">("60");
+  });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -79,7 +161,7 @@ export default function BookingModal({
     (sum, addOn) => sum + addOn.price,
     0
   );
-  const basePrice = selectedDuration === "60" ? 100 : 150;
+  const basePrice = parseInt(selectedService.price);
   const totalPrice = basePrice + totalAddOnsPrice;
 
   if (!isOpen) return null;
@@ -92,7 +174,7 @@ export default function BookingModal({
     try {
       // Prepare booking details
       const bookingDetails = {
-        service: service.title,
+        service: selectedService.title,
         duration: `${selectedDuration} minutes`,
         date: format(selectedDate, "MMMM d, yyyy"),
         time: selectedTime,
@@ -205,15 +287,38 @@ export default function BookingModal({
 
                         {/* Service Selection */}
                         <div className="mb-6">
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Service
+                          <label
+                            htmlFor="service"
+                            className="block text-sm font-medium text-gray-700 mb-2"
+                          >
+                            Select Your Service
                           </label>
-                          <div className="text-gray-900 font-medium">
-                            {service.title}
-                          </div>
-                          <div className="text-gray-600">
-                            {service.subtitle}
-                          </div>
+                          <select
+                            id="service"
+                            name="service"
+                            value={selectedService.id}
+                            onChange={(e) => {
+                              const newService = AVAILABLE_SERVICES.find(
+                                (s) => s.id === e.target.value
+                              );
+                              if (newService) {
+                                setSelectedService(newService);
+                              }
+                            }}
+                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm"
+                          >
+                            <option value="">Select a Massage Type</option>
+                            {AVAILABLE_SERVICES.map((service) => (
+                              <option key={service.id} value={service.id}>
+                                {service.title} - ${service.price}
+                              </option>
+                            ))}
+                          </select>
+                          {selectedService.id && (
+                            <div className="mt-2 text-sm text-gray-600">
+                              {selectedService.subtitle}
+                            </div>
+                          )}
                           <button
                             type="button"
                             onClick={onEditAddOns}
@@ -265,7 +370,7 @@ export default function BookingModal({
                         )}
 
                         {/* Duration Selection (if applicable) */}
-                        {service.duration.includes("60-90") && (
+                        {selectedService.duration.includes("60-90") && (
                           <div className="mb-6">
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                               Select Duration
@@ -339,14 +444,16 @@ export default function BookingModal({
                         {/* Total Price Summary */}
                         <div className="mb-6 bg-gray-50 rounded-lg p-4">
                           <div className="space-y-2">
-                            <div className="flex justify-between items-center text-sm">
-                              <span className="text-gray-600">
-                                Base Service
-                              </span>
-                              <span className="text-gray-700">
-                                ${basePrice}
-                              </span>
-                            </div>
+                            {selectedService.id && (
+                              <div className="flex justify-between items-center text-sm">
+                                <span className="text-gray-600">
+                                  Base Service ({selectedService.title})
+                                </span>
+                                <span className="text-gray-700">
+                                  ${selectedService.price}
+                                </span>
+                              </div>
+                            )}
                             {selectedAddOns.length > 0 && (
                               <div className="flex justify-between items-center text-sm">
                                 <span className="text-gray-600">Add-Ons</span>
@@ -355,14 +462,16 @@ export default function BookingModal({
                                 </span>
                               </div>
                             )}
-                            <div className="pt-2 border-t border-gray-200 flex justify-between items-center">
-                              <span className="text-gray-900 font-medium">
-                                Total
-                              </span>
-                              <span className="text-amber-700 font-medium text-lg">
-                                ${totalPrice}
-                              </span>
-                            </div>
+                            {selectedService.id && (
+                              <div className="pt-2 border-t border-gray-200 flex justify-between items-center">
+                                <span className="text-gray-900 font-medium">
+                                  Total
+                                </span>
+                                <span className="text-amber-700 font-medium text-lg">
+                                  ${totalPrice}
+                                </span>
+                              </div>
+                            )}
                           </div>
                         </div>
 

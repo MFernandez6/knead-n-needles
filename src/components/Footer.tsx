@@ -83,7 +83,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-200">
-          <p className="text-gray-400 text-sm text-center">
+          <p className="text-gray-900 text-sm text-center">
             © {new Date().getFullYear()} Needle & Knead. All rights reserved.
           </p>
         </div>

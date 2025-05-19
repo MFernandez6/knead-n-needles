@@ -211,8 +211,12 @@ function ServicesContent() {
     }
   }, [searchParams]);
 
-  const handleBookNow = (service: Service) => {
-    setSelectedService(service);
+  const handleBookNow = (service?: Service) => {
+    if (service) {
+      setSelectedService(service);
+    } else {
+      setSelectedService(null);
+    }
     setSelectedAddOns([]);
     setIsBookingModalOpen(true);
   };
@@ -242,6 +246,14 @@ function ServicesContent() {
             Discover our range of professional massage and therapy services
             designed to enhance your well-being and promote healing.
           </p>
+          <div className="mt-8 text-center">
+            <button
+              onClick={() => handleBookNow()}
+              className="bg-white text-amber-700 px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-100 transition-colors"
+            >
+              Book Your Appointment
+            </button>
+          </div>
         </div>
       </section>
 
@@ -300,12 +312,22 @@ function ServicesContent() {
                     </span>
                   </div>
 
-                  <button
-                    onClick={() => handleBookNow(service)}
-                    className="block w-full text-center bg-amber-700 text-white px-4 py-2 rounded-md hover:bg-amber-800 transition-colors"
-                  >
-                    Book Your Appointment
-                  </button>
+                  {!service.comingSoon && (
+                    <button
+                      onClick={() => handleBookNow(service)}
+                      className="block w-full text-center bg-amber-700 text-white px-4 py-2 rounded-md hover:bg-amber-800 transition-colors"
+                    >
+                      Book Your Appointment
+                    </button>
+                  )}
+                  {service.comingSoon && (
+                    <button
+                      disabled
+                      className="block w-full text-center bg-gray-300 text-gray-500 px-4 py-2 rounded-md cursor-not-allowed"
+                    >
+                      Coming Soon
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -324,10 +346,7 @@ function ServicesContent() {
             health and wellness.
           </p>
           <button
-            onClick={() => {
-              setSelectedService(null);
-              setIsBookingModalOpen(true);
-            }}
+            onClick={() => handleBookNow()}
             className="inline-block bg-white text-amber-700 px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-100 transition-colors"
           >
             Book Your Appointment
@@ -346,24 +365,20 @@ function ServicesContent() {
         }}
       />
 
-      {selectedService && (
-        <>
-          <AddOnsModal
-            isOpen={isAddOnsModalOpen}
-            onClose={() => setIsAddOnsModalOpen(false)}
-            addOns={selectedService.addOns || []}
-            onAddOnsSelected={handleAddOnsSelected}
-            onContinue={handleAddOnsContinue}
-          />
-          <BookingModal
-            isOpen={isBookingModalOpen}
-            onClose={() => setIsBookingModalOpen(false)}
-            service={selectedService}
-            selectedAddOns={selectedAddOns}
-            onEditAddOns={handleEditAddOns}
-          />
-        </>
-      )}
+      <AddOnsModal
+        isOpen={isAddOnsModalOpen}
+        onClose={() => setIsAddOnsModalOpen(false)}
+        addOns={selectedService?.addOns || []}
+        onAddOnsSelected={handleAddOnsSelected}
+        onContinue={handleAddOnsContinue}
+      />
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        selectedAddOns={selectedAddOns}
+        onEditAddOns={handleEditAddOns}
+      />
     </div>
   );
 }
