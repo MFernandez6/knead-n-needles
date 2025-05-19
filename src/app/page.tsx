@@ -402,7 +402,6 @@ export default function Home() {
       <BookingModal
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
-        service={defaultService}
         selectedAddOns={selectedAddOns}
         onEditAddOns={handleEditAddOns}
       />
