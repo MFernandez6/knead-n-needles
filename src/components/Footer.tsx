@@ -61,7 +61,7 @@ const Footer = () => {
             </h3>
             <ul className="mt-4 space-y-2">
               <li className="text-gray-600 text-sm">Miami, Florida</li>
-              <li className="text-gray-600 text-sm">(786) 417-3948</li>
+              <li className="text-gray-600 text-sm">(786) 917-9016</li>
               <li className="text-gray-600 text-sm">
                 NeedleAndKneadServices@gmail.com
               </li>
