@@ -1,16 +1,40 @@
 "use client";
 
+import Image from "next/image";
+
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-amber-700 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-center mb-4">Contact Us</h1>
-          <p className="text-xl text-center max-w-3xl mx-auto">
-            Get in touch with us to schedule your appointment or learn more
-            about our services
-          </p>
+      <section className="bg-amber-700 text-white py-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <Image
+            src="/logo-SVG.svg"
+            alt="Background Pattern"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center">
+            <div className="inline-block">
+              <div className="relative w-24 h-24 mx-auto">
+                <Image
+                  src="/logo-SVG.svg"
+                  alt="Needle & Knead Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </div>
+            <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
+            <p className="text-xl max-w-3xl mx-auto">
+              Get in touch with us to schedule your appointment or learn more
+              about our services
+            </p>
+          </div>
         </div>
       </section>
 
