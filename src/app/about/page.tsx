@@ -78,14 +78,16 @@ export default function AboutPage() {
                 traditional wellness practices, Luis A. Fernandez is a dedicated
                 practitioner committed to helping others achieve optimal health
                 and wellness. His journey in holistic wellness began with a deep
-                fascination for the body's natural ability to maintain balance.
+                fascination for the body&apos;s natural ability to maintain
+                balance.
               </p>
               <p className="text-gray-600 text-lg mb-6">
-                Luis's expertise spans multiple disciplines, including Swedish
-                massage, deep tissue therapy, sports massage, acupuncture, and
-                traditional Chinese medicine. He has trained extensively in both
-                Eastern and Western wellness modalities, allowing him to provide
-                a unique and comprehensive approach to treatment.
+                Luis&apos;s expertise spans multiple disciplines, including
+                Swedish massage, deep tissue therapy, sports massage,
+                acupuncture, and traditional Chinese medicine. He has trained
+                extensively in both Eastern and Western wellness modalities,
+                allowing him to provide a unique and comprehensive approach to
+                treatment.
               </p>
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-amber-700">
