@@ -13,7 +13,7 @@ export default function AboutPage() {
             About Needle & Knead
           </h1>
           <p className="text-xl text-center max-w-3xl mx-auto">
-            Your journey to wellness and healing begins here at Knead
+            Your journey to wellness and relaxation begins here at Knead
           </p>
         </div>
       </section>
@@ -43,13 +43,14 @@ export default function AboutPage() {
                 Meet the Company
               </h2>
               <p className="text-gray-600 text-lg mb-6">
-                Welcome to Needle & Knead, a sanctuary of healing and wellness
-                located in the heart of our community. Our studio is designed to
-                provide a peaceful and comfortable environment where you can
-                escape the stresses of daily life and focus on your well-being.
+                Welcome to Needle & Knead, a sanctuary of wellness and
+                relaxation located in the heart of our community. Our studio is
+                designed to provide a peaceful and comfortable environment where
+                you can escape the stresses of daily life and focus on your
+                well-being.
               </p>
               <p className="text-gray-600 text-lg mb-6">
-                We combine traditional healing practices with modern techniques
+                We combine traditional wellness practices with modern techniques
                 to offer a comprehensive approach to wellness. Our commitment to
                 excellence and personalized care ensures that each client
                 receives the attention and treatment they deserve.
@@ -74,18 +75,17 @@ export default function AboutPage() {
               </h2>
               <p className="text-gray-600 text-lg mb-6">
                 With over 15 years of experience in massage therapy and
-                traditional healing practices, Luis A. Fernandez is a dedicated
+                traditional wellness practices, Luis A. Fernandez is a dedicated
                 practitioner committed to helping others achieve optimal health
-                and wellness. His journey in holistic healing began with a deep
-                fascination for the body&#39;s natural ability to heal itself.
+                and wellness. His journey in holistic wellness began with a deep
+                fascination for the body's natural ability to maintain balance.
               </p>
               <p className="text-gray-600 text-lg mb-6">
-                Luis&#39;s expertise spans multiple disciplines, including
-                Swedish massage, deep tissue therapy, sports massage,
-                acupuncture, and traditional Chinese medicine. He has trained
-                extensively in both Eastern and Western healing modalities,
-                allowing him to provide a unique and comprehensive approach to
-                treatment.
+                Luis's expertise spans multiple disciplines, including Swedish
+                massage, deep tissue therapy, sports massage, acupuncture, and
+                traditional Chinese medicine. He has trained extensively in both
+                Eastern and Western wellness modalities, allowing him to provide
+                a unique and comprehensive approach to treatment.
               </p>
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-amber-700">
@@ -114,7 +114,7 @@ export default function AboutPage() {
             <p className="text-gray-600 text-lg mb-6">
               At Needle & Knead, we believe in treating the whole person - body,
               mind, and spirit. Our approach combines ancient wisdom with modern
-              techniques to create a truly holistic healing experience.
+              techniques to create a truly holistic wellness experience.
             </p>
             <p className="text-gray-600 text-lg">
               We are committed to providing personalized care that addresses

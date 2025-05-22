@@ -72,10 +72,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Phone</h3>
                     <a
-                      href="tel:786-417-3948"
+                      href="tel:786-917-9016"
                       className="text-amber-700 hover:text-amber-800"
                     >
-                      (786) 417-3948
+                      (786) 917-9016
                     </a>
                   </div>
                 </div>
@@ -103,7 +103,7 @@ export default function ContactPage() {
                       href="mailto:kneadandneedles@gmail.com"
                       className="text-amber-700 hover:text-amber-800"
                     >
-                      needleandkneadservices@gmail.com
+                      NeedleAndKneadServices@gmail.com
                     </a>
                   </div>
                 </div>

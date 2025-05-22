@@ -102,7 +102,7 @@ const AVAILABLE_SERVICES = [
     duration: "30 minutes",
     price: "40",
     benefits: [
-      "Promotes natural healing",
+      "Promotes natural wellness",
       "Improves circulation",
       "Reduces stress",
       "Enhances overall wellness",

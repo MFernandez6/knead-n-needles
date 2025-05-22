@@ -69,7 +69,7 @@ const addOns = [
     name: "Singing Bowls",
     price: 15,
     description:
-      "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
+      "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and restoration.",
   },
   {
     id: "salt-scrub",
@@ -244,16 +244,8 @@ function ServicesContent() {
           <h1 className="text-4xl font-bold text-center mb-4">Our Services</h1>
           <p className="text-xl text-center max-w-3xl mx-auto">
             Discover our range of professional massage and therapy services
-            designed to enhance your well-being and promote healing.
+            designed to enhance your well-being and promote wellness.
           </p>
-          <div className="mt-8 text-center">
-            <button
-              onClick={() => handleBookNow()}
-              className="bg-white text-amber-700 px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-100 transition-colors"
-            >
-              Book Your Appointment
-            </button>
-          </div>
         </div>
       </section>
 
@@ -341,16 +333,10 @@ function ServicesContent() {
           <h2 className="text-3xl font-bold mb-4">
             Ready to Experience the Benefits?
           </h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
+          <p className="text-xl max-w-3xl mx-auto">
             Book your session today and take the first step towards better
             health and wellness.
           </p>
-          <button
-            onClick={() => handleBookNow()}
-            className="inline-block bg-white text-amber-700 px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-100 transition-colors"
-          >
-            Book Your Appointment
-          </button>
         </div>
       </section>
 

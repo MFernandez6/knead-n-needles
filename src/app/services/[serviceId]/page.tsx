@@ -84,7 +84,7 @@ const SERVICES: Service[] = [
         name: "Singing Bowls",
         price: 15,
         description:
-          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
+          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and restoration.",
       },
       {
         id: "salt-scrub",
@@ -150,7 +150,7 @@ const SERVICES: Service[] = [
         name: "Singing Bowls",
         price: 15,
         description:
-          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
+          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and restoration.",
       },
       {
         id: "salt-scrub",
@@ -216,7 +216,7 @@ const SERVICES: Service[] = [
         name: "Singing Bowls",
         price: 15,
         description:
-          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
+          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and restoration.",
       },
       {
         id: "salt-scrub",
@@ -233,7 +233,7 @@ const SERVICES: Service[] = [
     subtitle: "The Foot Whisperer",
     image: "/images/reflexology.jpeg",
     description:
-      "Foot massage that stimulates pressure points to improve overall health.",
+      "Foot massage that stimulates pressure points to improve overall wellness.",
     benefits: ["Stress reduction", "Improved circulation", "Better sleep"],
     duration: "30 minutes",
     price: "40",
@@ -278,7 +278,7 @@ const SERVICES: Service[] = [
         name: "Singing Bowls",
         price: 15,
         description:
-          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
+          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and restoration.",
       },
       {
         id: "salt-scrub",
@@ -344,7 +344,7 @@ const SERVICES: Service[] = [
         name: "Singing Bowls",
         price: 15,
         description:
-          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and healing.",
+          "Tibetan singing bowls create therapeutic vibrations that promote deep relaxation and restoration.",
       },
       {
         id: "salt-scrub",
