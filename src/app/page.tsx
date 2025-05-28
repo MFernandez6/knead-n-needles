@@ -107,7 +107,7 @@ export default function Home() {
       <section className="relative h-[80vh] flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-image.JPG"
+            src="/images/background.JPG"
             alt="Relaxing massage therapy"
             fill
             className="object-cover brightness-50"
