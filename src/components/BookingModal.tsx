@@ -20,7 +20,7 @@ interface Service {
   description: string;
   benefits: string[];
   duration: string;
-  price: string;
+  price: { [key: string]: number } | string;
   addOns?: AddOn[];
   comingSoon?: boolean;
 }
@@ -43,7 +43,7 @@ const AVAILABLE_HOURS = [
   "7:30 PM",
 ];
 
-const AVAILABLE_SERVICES = [
+const AVAILABLE_SERVICES: Service[] = [
   {
     id: "swedish",
     title: "Swedish Massage",
@@ -51,8 +51,11 @@ const AVAILABLE_SERVICES = [
     image: "/images/swedish.jpg",
     description:
       "The Monday blues recovery, the mid week sedative and finally the 'it's Friday, I made it!' This treatment uses a light to medium pressure massage focused to relieve both the mental and physical aspects of the body.",
-    duration: "60 minutes",
-    price: "100",
+    duration: "60-90 minutes",
+    price: {
+      "60": 120,
+      "90": 180,
+    },
     benefits: [
       "Reduces stress and anxiety",
       "Improves circulation",
@@ -67,8 +70,11 @@ const AVAILABLE_SERVICES = [
     image: "/images/deep-tissue.jpg",
     description:
       "Don't let the name scare you, a skilled massage therapist can get into those sore muscles WITHOUT making you feel like you just finished a marathon. Using firm pressure we pinpoint exactly where it is affecting you.",
-    duration: "60 minutes",
-    price: "100",
+    duration: "60-90 minutes",
+    price: {
+      "60": 120,
+      "90": 180,
+    },
     benefits: [
       "Targets chronic pain",
       "Breaks down scar tissue",
@@ -83,8 +89,11 @@ const AVAILABLE_SERVICES = [
     image: "/images/sports.webp",
     description:
       "Whether you're a weekend warrior or a professional athlete, this is your secret weapon! Think of it as a tune-up for your body's engine. We'll get those muscles firing on all cylinders.",
-    duration: "60 minutes",
-    price: "100",
+    duration: "60-90 minutes",
+    price: {
+      "60": 120,
+      "90": 180,
+    },
     benefits: [
       "Enhances athletic performance",
       "Prevents injuries",
@@ -116,7 +125,9 @@ const AVAILABLE_SERVICES = [
     description:
       "A specialized type of massage focusing on the muscles and tissues surrounding the temporomandibular joint, anterior part of the neck, occipital area of the neck, shoulders and back.",
     duration: "60 minutes",
-    price: "100",
+    price: {
+      "60": 120,
+    },
     benefits: [
       "Relieves jaw tension",
       "Reduces headaches",
@@ -161,7 +172,10 @@ export default function BookingModal({
     (sum, addOn) => sum + addOn.price,
     0
   );
-  const basePrice = parseInt(selectedService.price);
+  const basePrice =
+    typeof selectedService.price === "object"
+      ? selectedService.price[selectedDuration] || 0
+      : parseInt(selectedService.price);
   const totalPrice = basePrice + totalAddOnsPrice;
 
   if (!isOpen) return null;
@@ -303,6 +317,13 @@ export default function BookingModal({
                               );
                               if (newService) {
                                 setSelectedService(newService);
+                                // Reset duration if the new service doesn't support it
+                                if (
+                                  typeof newService.price === "string" ||
+                                  !newService.price["90"]
+                                ) {
+                                  setSelectedDuration("60");
+                                }
                               }
                             }}
                             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm"
@@ -310,7 +331,10 @@ export default function BookingModal({
                             <option value="">Select a Massage Type</option>
                             {AVAILABLE_SERVICES.map((service) => (
                               <option key={service.id} value={service.id}>
-                                {service.title} - ${service.price}
+                                {service.title} - $
+                                {typeof service.price === "object"
+                                  ? Math.min(...Object.values(service.price))
+                                  : service.price}
                               </option>
                             ))}
                           </select>
@@ -450,7 +474,7 @@ export default function BookingModal({
                                   Base Service ({selectedService.title})
                                 </span>
                                 <span className="text-gray-700">
-                                  ${selectedService.price}
+                                  ${basePrice}
                                 </span>
                               </div>
                             )}

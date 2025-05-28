@@ -3,19 +3,31 @@
 import Image from "next/image";
 import { useEffect } from "react";
 
+interface AddOn {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
+
+interface Service {
+  id: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  description: string;
+  benefits: string[];
+  duration: string;
+  price: { [key: string]: number } | string;
+  addOns?: AddOn[];
+  comingSoon?: boolean;
+}
+
 interface ServiceModalProps {
   isOpen: boolean;
   onClose: () => void;
   onBookNow: () => void;
-  service: {
-    id: string;
-    title: string;
-    image: string;
-    description: string;
-    benefits: string[];
-    duration: string;
-    price: string;
-  } | null;
+  service: Service | null;
 }
 
 const ServiceModal = ({
@@ -87,7 +99,9 @@ const ServiceModal = ({
           <div className="flex justify-between items-center mb-6">
             <span className="text-gray-600 text-lg">{service.duration}</span>
             <span className="font-semibold text-amber-700 text-xl">
-              {service.price}
+              {typeof service.price === "string"
+                ? service.price
+                : Object.values(service.price)[0]}
             </span>
           </div>
 

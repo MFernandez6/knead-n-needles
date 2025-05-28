@@ -23,7 +23,9 @@ interface Service {
   description: string;
   benefits: string[];
   duration: string;
-  price: string;
+  price: {
+    [key: string]: number;
+  };
   addOns?: AddOn[];
   comingSoon?: boolean;
 }
@@ -35,14 +37,19 @@ const SERVICES: Service[] = [
     subtitle: "The Tranquilizer",
     image: "/images/swedish.jpg",
     description:
-      "A full-body massage designed to promote relaxation and reduce stress.",
+      "The Monday blues recovery, the mid week sedative and finally the 'it's Friday, I made it!' This treatment uses a light to medium pressure massage focused to relieve both the mental and physical aspects of the body. You'll leave the world behind with this one!",
     benefits: [
-      "Reduces stress",
+      "Reduces muscle tension",
       "Improves circulation",
-      "Relieves muscle tension",
+      "Promotes relaxation",
+      "Enhances flexibility",
+      "Relieves stress and anxiety",
     ],
     duration: "60-90 minutes",
-    price: "100",
+    price: {
+      "60": 120,
+      "90": 180,
+    },
     addOns: [
       {
         id: "cupping",
@@ -101,14 +108,19 @@ const SERVICES: Service[] = [
     subtitle: "The Bulldozer",
     image: "/images/deep-tissue.jpg",
     description:
-      "A therapeutic massage that targets deep muscle layers to relieve chronic tension.",
+      "Don't let the name scare you, a skilled massage therapist can get into those sore muscles WITHOUT making you feel like you just finished a marathon. Using firm pressure we pinpoint exactly where it is affecting you, target and release the knot. Feel but not hurt.",
     benefits: [
+      "Breaks down scar tissue",
       "Relieves chronic pain",
       "Improves posture",
       "Increases range of motion",
+      "Reduces inflammation",
     ],
     duration: "60-90 minutes",
-    price: "100",
+    price: {
+      "60": 120,
+      "90": 180,
+    },
     addOns: [
       {
         id: "cupping",
@@ -167,14 +179,18 @@ const SERVICES: Service[] = [
     subtitle: "The Performance Enhancer",
     image: "/images/sports.webp",
     description:
-      "Specialized massage for athletes to improve performance and prevent injuries.",
+      "Whether you're a weekend warrior or a professional athlete, this is your secret weapon! Think of it as a tune-up for your body's engine. We'll get those muscles firing on all cylinders, improve your range of motion, and have you performing at your peak. It's like having a pit crew for your body!",
     benefits: [
       "Prevents injuries",
       "Improves athletic performance",
       "Speeds up recovery time",
+      "Increases flexibility",
     ],
     duration: "60-90 minutes",
-    price: "100",
+    price: {
+      "60": 120,
+      "90": 180,
+    },
     addOns: [
       {
         id: "cupping",
@@ -228,15 +244,48 @@ const SERVICES: Service[] = [
     ],
   },
   {
+    id: "acupuncture",
+    title: "Acupuncture Therapy",
+    subtitle: "Coming Soon",
+    image: "/images/acupuncture.jpg",
+    description:
+      "Traditional Chinese medicine technique that involves inserting thin needles into specific points on the body to treat pain and various conditions.",
+    benefits: [
+      "Pain management",
+      "Stress reduction",
+      "Improved sleep",
+      "Better digestion",
+      "Enhanced energy flow",
+      "Strengthened immune system",
+      "Improved mental clarity",
+    ],
+    duration: "45-60 minutes",
+    price: {
+      "60": 120,
+      "90": 180,
+    },
+    comingSoon: true,
+  },
+  {
     id: "reflexology",
     title: "Reflexology",
     subtitle: "The Foot Whisperer",
     image: "/images/reflexology.jpeg",
     description:
-      "Foot massage that stimulates pressure points to improve overall wellness.",
-    benefits: ["Stress reduction", "Improved circulation", "Better sleep"],
+      "Who knew your feet held the map to your body's wellness? It's like having a remote control for your entire system! Through gentle to firm pressure on specific points, we can help your body find its natural balance. It's not just a foot massage - it's a full-body experience through your feet!",
+    benefits: [
+      "Stress reduction",
+      "Improved circulation",
+      "Better sleep",
+      "Enhanced energy levels",
+      "Natural pain relief",
+      "Boosted immune function",
+      "Improved mental clarity",
+    ],
     duration: "30 minutes",
-    price: "40",
+    price: {
+      "30": 40,
+    },
     addOns: [
       {
         id: "cupping",
@@ -295,14 +344,18 @@ const SERVICES: Service[] = [
     subtitle: "Please, don't bite my finger off",
     image: "/images/tmj.jpg",
     description:
-      "A specialized type of massage focusing on the muscles and tissues surrounding the temporomandibular joint, anterior part of the neck, occipital area of the neck, shoulders and back.",
+      "A specialized type of massage focusing on the muscles and tissues surrounding the temporomandibular joint, anterior part of the neck, occipital area of the neck, shoulders and back. Using a pair of gloves to dove into the inside area of the mouth and addressing the interior muscles that can become tight, create pain and limit jaw mobility, hence the nickname.",
     benefits: [
       "Relieves jaw tension",
       "Improves jaw mobility",
       "Reduces TMJ pain",
+      "Addresses neck and shoulder tension",
+      "Enhances overall facial comfort",
     ],
     duration: "60 minutes",
-    price: "100",
+    price: {
+      "60": 120,
+    },
     addOns: [
       {
         id: "cupping",
@@ -454,11 +507,18 @@ export default function ServicePage() {
               <h2 className="text-lg font-medium text-gray-900">
                 Duration & Price
               </h2>
-              <div className="mt-2 flex items-center space-x-4">
-                <span className="text-gray-600">{service.duration}</span>
-                <span className="text-2xl font-bold text-amber-700">
-                  ${service.price}
-                </span>
+              <div className="mt-2 space-y-2">
+                {Object.entries(service.price).map(([duration, price]) => (
+                  <div
+                    key={duration}
+                    className="flex items-center justify-between"
+                  >
+                    <span className="text-gray-600">{duration} minutes</span>
+                    <span className="text-2xl font-bold text-amber-700">
+                      ${price}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
 

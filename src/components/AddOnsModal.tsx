@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   XMarkIcon,
@@ -39,15 +39,16 @@ export default function AddOnsModal({
   const toggleAddOn = (addOn: AddOn) => {
     setSelectedAddOns((prev) => {
       const isSelected = prev.some((item) => item.id === addOn.id);
-      const newSelection = isSelected
+      return isSelected
         ? prev.filter((item) => item.id !== addOn.id)
         : [...prev, addOn];
-
-      // Call the callback if provided
-      onAddOnsSelected?.(newSelection);
-      return newSelection;
     });
   };
+
+  // Call the callback after state update
+  useEffect(() => {
+    onAddOnsSelected?.(selectedAddOns);
+  }, [selectedAddOns, onAddOnsSelected]);
 
   const handleContinue = () => {
     onContinue?.(selectedAddOns);

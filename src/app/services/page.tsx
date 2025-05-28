@@ -23,7 +23,7 @@ interface Service {
   description: string;
   benefits: string[];
   duration: string;
-  price: string;
+  price: { [key: string]: number } | string;
   addOns?: AddOn[];
   comingSoon?: boolean;
 }
@@ -96,7 +96,10 @@ const services = [
       "Relieves stress and anxiety",
     ],
     duration: "60-90 minutes",
-    price: "From $100",
+    price: {
+      "60": 120,
+      "90": 180,
+    },
     addOns: addOns,
   },
   {
@@ -114,7 +117,10 @@ const services = [
       "Reduces inflammation",
     ],
     duration: "60-90 minutes",
-    price: "From $100",
+    price: {
+      "60": 120,
+      "90": 180,
+    },
     addOns: addOns,
   },
   {
@@ -131,7 +137,10 @@ const services = [
       "Increases flexibility",
     ],
     duration: "60-90 minutes",
-    price: "From $100",
+    price: {
+      "60": 120,
+      "90": 180,
+    },
     addOns: addOns,
   },
   {
@@ -151,7 +160,10 @@ const services = [
       "Improved mental clarity",
     ],
     duration: "45-60 minutes",
-    price: "From $100",
+    price: {
+      "60": 120,
+      "90": 180,
+    },
     comingSoon: true,
   },
   {
@@ -189,7 +201,7 @@ const services = [
       "Enhances overall facial comfort",
     ],
     duration: "60 minutes",
-    price: "From $100",
+    price: "From $120",
     addOns: addOns,
   },
 ];
@@ -322,7 +334,9 @@ function ServicesContent() {
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-gray-600">{service.duration}</span>
                     <span className="font-semibold text-amber-700">
-                      {service.price}
+                      {typeof service.price === "object"
+                        ? `From $${Math.min(...Object.values(service.price))}`
+                        : service.price}
                     </span>
                   </div>
 
