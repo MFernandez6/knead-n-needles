@@ -5,12 +5,14 @@ A modern, responsive website for Needle & Knead massage studio built with Next.j
 ## Features
 
 - Responsive design that works on all devices
-- Modern and clean user interface
-- Service showcase
-- Online booking system
-- Therapist profiles
-- Contact information
-- Business hours
+- Modern and clean user interface with sophisticated animations
+- Service showcase with detailed pricing
+- Online booking system with real-time availability
+- Stripe payment integration for secure transactions
+- Email confirmations with SendGrid
+- Add-ons and enhancements selection
+- Contact information and business hours
+- Instagram social media integration
 
 ## Prerequisites
 
@@ -34,15 +36,27 @@ npm install
 yarn install
 ```
 
-3. Add required images:
-   Place the following images in the `public/images` directory:
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory with the following variables:
 
-- hero-massage.jpg
-- swedish-massage.jpg
-- deep-tissue.jpg
-- sports-massage.jpg
+```env
+# SendGrid Configuration
+SENDGRID_API_KEY=your_sendgrid_api_key_here
+SENDGRID_FROM_EMAIL=your_email@example.com
 
-4. Run the development server:
+# Stripe Configuration
+STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key_here
+```
+
+4. Set up Stripe:
+
+   - Create a Stripe account at [stripe.com](https://stripe.com)
+   - Get your API keys from the Stripe Dashboard
+   - Replace the placeholder keys in `.env.local` with your actual keys
+   - For testing, use Stripe's test keys (they start with `sk_test_` and `pk_test_`)
+
+5. Run the development server:
 
 ```bash
 npm run dev
@@ -50,7 +64,7 @@ npm run dev
 yarn dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
 ## Project Structure
 
@@ -71,10 +85,13 @@ knead-n-needles/
 
 ## Technologies Used
 
-- Next.js 14
-- React 18
-- Tailwind CSS
+- Next.js 15
+- React 19
+- Tailwind CSS 4
 - TypeScript
+- Stripe (Payment Processing)
+- SendGrid (Email Service)
+- Lucide React (Icons)
 
 ## Contributing
 
