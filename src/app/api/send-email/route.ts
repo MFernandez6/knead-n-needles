@@ -8,46 +8,84 @@ if (!apiKey) {
 }
 sgMail.setApiKey(apiKey || "");
 
-// Function to send SMS via Twilio
-async function sendSMS(to: string, message: string) {
-  try {
-    const accountSid = process.env.TWILIO_ACCOUNT_SID;
-    const authToken = process.env.TWILIO_AUTH_TOKEN;
-    const fromNumber = process.env.TWILIO_PHONE_NUMBER;
+// In-memory storage for booked appointments (in production, use a database)
+const bookedAppointments: Array<{
+  id: string;
+  date: string;
+  time: string;
+  duration: number;
+  customerName: string;
+  customerEmail: string;
+  service: string;
+}> = [];
 
-    if (!accountSid || !authToken || !fromNumber) {
-      console.error("Twilio credentials not configured");
-      return false;
-    }
+// Function to check if a time slot is available
+function isTimeSlotAvailable(
+  date: string,
+  time: string,
+  duration: number
+): boolean {
+  const appointmentStart = new Date(`${date} ${time}`);
+  const appointmentEnd = new Date(
+    appointmentStart.getTime() + duration * 60 * 1000
+  );
 
-    const response = await fetch(
-      `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Basic ${btoa(`${accountSid}:${authToken}`)}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          To: to,
-          From: fromNumber,
-          Body: message,
-        }),
+  // Add buffer time (90 minutes before and after for travel and setup)
+  const bufferTime = 90 * 60 * 1000; // 90 minutes in milliseconds
+  const slotStart = new Date(appointmentStart.getTime() - bufferTime);
+  const slotEnd = new Date(appointmentEnd.getTime() + bufferTime);
+
+  // Check against existing appointments
+  for (const appointment of bookedAppointments) {
+    if (appointment.date === date) {
+      const existingStart = new Date(`${appointment.date} ${appointment.time}`);
+      const existingEnd = new Date(
+        existingStart.getTime() + appointment.duration * 60 * 1000
+      );
+      const existingBufferStart = new Date(
+        existingStart.getTime() - bufferTime
+      );
+      const existingBufferEnd = new Date(existingEnd.getTime() + bufferTime);
+
+      // Check for overlap
+      if (slotStart < existingBufferEnd && slotEnd > existingBufferStart) {
+        return false;
       }
-    );
-
-    if (!response.ok) {
-      const error = await response.text();
-      console.error("Twilio SMS error:", error);
-      return false;
     }
+  }
 
-    console.log("SMS sent successfully");
-    return true;
-  } catch (error) {
-    console.error("Error sending SMS:", error);
+  return true;
+}
+
+// Function to add a new booking to the calendar
+function addBookingToCalendar(
+  date: string,
+  time: string,
+  duration: number,
+  customerName: string,
+  customerEmail: string,
+  service: string
+): boolean {
+  if (!isTimeSlotAvailable(date, time, duration)) {
     return false;
   }
+
+  const bookingId = `${date}-${time}-${customerName.replace(/\s+/g, "-")}`;
+
+  bookedAppointments.push({
+    id: bookingId,
+    date,
+    time,
+    duration,
+    customerName,
+    customerEmail,
+    service,
+  });
+
+  console.log(
+    `Booking added to calendar: ${date} at ${time} for ${customerName}`
+  );
+  return true;
 }
 
 export async function POST(request: Request) {
@@ -61,7 +99,7 @@ export async function POST(request: Request) {
       totalPrice,
       customerName,
       customerEmail,
-      customerPhone,
+      duration,
     } = body;
 
     // Validate required fields
@@ -69,6 +107,35 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
+      );
+    }
+
+    // Check if the time slot is available
+    const appointmentDuration = duration || 60; // Default to 60 minutes if not specified
+    if (!isTimeSlotAvailable(date, time, appointmentDuration)) {
+      return NextResponse.json(
+        {
+          error:
+            "This time slot is no longer available. Please select a different time.",
+        },
+        { status: 409 }
+      );
+    }
+
+    // Add booking to calendar
+    const bookingAdded = addBookingToCalendar(
+      date,
+      time,
+      appointmentDuration,
+      customerName,
+      customerEmail,
+      service
+    );
+
+    if (!bookingAdded) {
+      return NextResponse.json(
+        { error: "Failed to book appointment. Please try again." },
+        { status: 500 }
       );
     }
 
@@ -101,6 +168,7 @@ BOOKING DETAILS:
 Service: ${service}
 Date: ${date}
 Time: ${time}
+Duration: ${appointmentDuration} minutes
 ${addOns.length > 0 ? `Add-ons: ${addOns.join(", ")}` : ""}
 Total Price: $${totalPrice}
 
@@ -139,6 +207,7 @@ The Needle & Knead Team
               <p><strong>Service:</strong> ${service}</p>
               <p><strong>Date:</strong> ${date}</p>
               <p><strong>Time:</strong> ${time}</p>
+              <p><strong>Duration:</strong> ${appointmentDuration} minutes</p>
               ${
                 addOns.length > 0
                   ? `<p><strong>Add-ons:</strong> ${addOns.join(", ")}</p>`
@@ -181,25 +250,15 @@ The Needle & Knead Team
     const emailResponse = await sgMail.send(msg);
     console.log("SendGrid response:", emailResponse);
 
-    // Send SMS confirmation if phone number is provided
-    let smsSent = false;
-    if (customerPhone) {
-      const smsMessage = `Needle & Knead: Hi ${customerName}! Your ${service} appointment is confirmed for ${date} at ${time}. Total: $${totalPrice}. We look forward to seeing you!`;
-      smsSent = await sendSMS(customerPhone, smsMessage);
-    }
-
     return NextResponse.json(
       {
-        message: "Email sent successfully",
-        smsSent: smsSent,
-        smsMessage: customerPhone
-          ? "SMS confirmation sent"
-          : "No phone number provided",
+        message: "Booking confirmed and email sent successfully",
+        bookingId: `${date}-${time}-${customerName.replace(/\s+/g, "-")}`,
       },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("Error processing booking:", error);
     // Log the full error details
     if (error instanceof Error) {
       console.error("Error details:", {
@@ -208,7 +267,7 @@ The Needle & Knead Team
       });
     }
     return NextResponse.json(
-      { error: "Failed to send email. Please try again later." },
+      { error: "Failed to process booking. Please try again later." },
       { status: 500 }
     );
   }

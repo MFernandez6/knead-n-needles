@@ -7,9 +7,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["var(--font-poppins)"],
-      },
+      // We'll use the Inter font from our CSS import
     },
   },
   plugins: [],
