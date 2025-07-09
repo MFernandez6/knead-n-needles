@@ -100,6 +100,9 @@ export async function POST(request: Request) {
       customerName,
       customerEmail,
       duration,
+      notes,
+      additionalNotes,
+      paymentOption,
     } = body;
 
     // Validate required fields
@@ -171,6 +174,9 @@ Time: ${time}
 Duration: ${appointmentDuration} minutes
 ${addOns.length > 0 ? `Add-ons: ${addOns.join(", ")}` : ""}
 Total Price: $${totalPrice}
+Payment: ${paymentOption === "now" ? "Paid Now" : "Pay After Service"}
+${notes ? `Special Requests: ${notes}` : ""}
+${additionalNotes ? `Additional Notes: ${additionalNotes}` : ""}
 
 We look forward to providing you with an exceptional massage experience.
 
@@ -214,6 +220,19 @@ The Needle & Knead Team
                   : ""
               }
               <p><strong>Total Price:</strong> $${totalPrice}</p>
+              <p><strong>Payment:</strong> ${
+                paymentOption === "now" ? "Paid Now" : "Pay After Service"
+              }</p>
+              ${
+                notes
+                  ? `<p><strong>Special Requests:</strong> ${notes}</p>`
+                  : ""
+              }
+              ${
+                additionalNotes
+                  ? `<p><strong>Additional Notes:</strong> ${additionalNotes}</p>`
+                  : ""
+              }
             </div>
             
             <p>We look forward to seeing you for your appointment!</p>

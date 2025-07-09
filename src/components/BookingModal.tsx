@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, CheckCircle, CreditCard } from "lucide-react";
+import { X, CheckCircle, CreditCard, Clock } from "lucide-react";
 import PaymentForm from "./PaymentForm";
 
 interface AddOn {
@@ -33,6 +33,7 @@ export default function BookingModal({
     date: "",
     time: "",
     notes: "",
+    additionalNotes: "",
   });
 
   const [availableTimes, setAvailableTimes] = useState<string[]>([]);
@@ -42,6 +43,9 @@ export default function BookingModal({
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
   const [paymentError, setPaymentError] = useState<string | null>(null);
+  const [paymentOption, setPaymentOption] = useState<"now" | "later" | null>(
+    null
+  );
 
   const services = [
     { id: "", name: "Select a Massage Type" },
@@ -146,8 +150,17 @@ export default function BookingModal({
       return;
     }
 
-    // Show payment section
+    // Show payment option selection
     setShowPayment(true);
+  };
+
+  const handlePaymentOptionSelect = (option: "now" | "later") => {
+    setPaymentOption(option);
+
+    if (option === "later") {
+      // Skip payment and go directly to booking confirmation
+      handlePaymentSuccess();
+    }
   };
 
   const handlePaymentSuccess = async () => {
@@ -170,8 +183,10 @@ export default function BookingModal({
           date: formData.date,
           time: formData.time,
           notes: formData.notes,
+          additionalNotes: formData.additionalNotes,
           addOns: selectedAddOns.map((addOn) => addOn.name),
           totalPrice,
+          paymentOption,
         }),
       });
 
@@ -203,6 +218,7 @@ export default function BookingModal({
     setShowPayment(false);
     setShowConfirmation(false);
     setPaymentError(null);
+    setPaymentOption(null);
     setFormData({
       name: "",
       email: "",
@@ -212,6 +228,7 @@ export default function BookingModal({
       date: "",
       time: "",
       notes: "",
+      additionalNotes: "",
     });
     setSelectedTime("");
   };
@@ -262,7 +279,9 @@ export default function BookingModal({
               {showConfirmation
                 ? "Booking Confirmed!"
                 : showPayment
-                ? "Complete Payment"
+                ? paymentOption === "now"
+                  ? "Complete Payment"
+                  : "Payment Options"
                 : "Book Your Appointment"}
             </h2>
             <button
@@ -329,10 +348,20 @@ export default function BookingModal({
                     <div className="border-t border-amber-200 pt-2">
                       <div className="flex justify-between">
                         <span className="text-gray-600 font-medium">
-                          Total Paid:
+                          Total:
                         </span>
                         <span className="font-bold text-amber-700">
                           ${totalPrice}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="border-t border-amber-200 pt-2">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Payment:</span>
+                        <span className="font-medium text-gray-900">
+                          {paymentOption === "now"
+                            ? "Paid Now"
+                            : "Pay After Service"}
                         </span>
                       </div>
                     </div>
@@ -351,6 +380,9 @@ export default function BookingModal({
                       • We&apos;ll contact you 24 hours before your appointment
                     </li>
                     <li>• Please arrive 10 minutes early for your session</li>
+                    {paymentOption === "later" && (
+                      <li>• Payment will be collected after your massage</li>
+                    )}
                   </ul>
                 </div>
               </div>
@@ -363,88 +395,224 @@ export default function BookingModal({
               </button>
             </div>
           ) : showPayment ? (
-            // Payment Screen
+            // Payment Options Screen
             <div className="space-y-6">
-              <div className="bg-amber-50 rounded-lg p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-medium text-gray-900">Booking Summary</h3>
-                  <CreditCard className="w-5 h-5 text-amber-600" />
+              {!paymentOption ? (
+                // Payment Option Selection
+                <div className="space-y-6">
+                  <div className="bg-amber-50 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="font-medium text-gray-900">
+                        Booking Summary
+                      </h3>
+                      <CreditCard className="w-5 h-5 text-amber-600" />
+                    </div>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Service:</span>
+                        <span className="text-gray-900">
+                          {
+                            services.find((s) => s.id === formData.service)
+                              ?.name
+                          }
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Duration:</span>
+                        <span className="text-gray-900">
+                          {formData.duration === "60"
+                            ? "60 minutes"
+                            : "90 minutes"}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Date & Time:</span>
+                        <span className="text-gray-900">
+                          {new Date(formData.date).toLocaleDateString()} at{" "}
+                          {formData.time}
+                        </span>
+                      </div>
+                      {selectedAddOns.length > 0 && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-700">Enhancements:</span>
+                          <span className="text-gray-900">
+                            {selectedAddOns
+                              .map((addOn) => addOn.name)
+                              .join(", ")}
+                          </span>
+                        </div>
+                      )}
+                      <div className="border-t border-amber-200 pt-2">
+                        <div className="flex justify-between">
+                          <span className="font-medium text-gray-900">
+                            Total:
+                          </span>
+                          <span className="font-bold text-amber-700">
+                            ${totalPrice}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-900 text-center">
+                      Choose Payment Option
+                    </h3>
+
+                    <div className="grid grid-cols-1 gap-4">
+                      <button
+                        onClick={() => handlePaymentOptionSelect("now")}
+                        className="flex items-center justify-between p-4 border-2 border-amber-200 rounded-lg hover:border-amber-400 hover:bg-amber-50 transition-all duration-200"
+                      >
+                        <div className="flex items-center space-x-3">
+                          <CreditCard className="w-6 h-6 text-amber-600" />
+                          <div className="text-left">
+                            <div className="font-semibold text-gray-900">
+                              Pay Now
+                            </div>
+                            <div className="text-sm text-gray-600">
+                              Secure payment with Stripe
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="font-bold text-amber-700">
+                            ${totalPrice}
+                          </div>
+                        </div>
+                      </button>
+
+                      <button
+                        onClick={() => handlePaymentOptionSelect("later")}
+                        className="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg hover:border-gray-400 hover:bg-gray-50 transition-all duration-200"
+                      >
+                        <div className="flex items-center space-x-3">
+                          <Clock className="w-6 h-6 text-gray-600" />
+                          <div className="text-left">
+                            <div className="font-semibold text-gray-900">
+                              Pay After Service
+                            </div>
+                            <div className="text-sm text-gray-600">
+                              Pay when you arrive
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="font-bold text-gray-700">
+                            ${totalPrice}
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-gray-700">Service:</span>
-                    <span className="text-gray-900">
-                      {services.find((s) => s.id === formData.service)?.name}
-                    </span>
+              ) : paymentOption === "now" ? (
+                // Stripe Payment Form
+                <div className="space-y-6">
+                  <div className="bg-amber-50 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="font-medium text-gray-900">
+                        Payment Details
+                      </h3>
+                      <CreditCard className="w-5 h-5 text-amber-600" />
+                    </div>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Service:</span>
+                        <span className="text-gray-900">
+                          {
+                            services.find((s) => s.id === formData.service)
+                              ?.name
+                          }
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Duration:</span>
+                        <span className="text-gray-900">
+                          {formData.duration === "60"
+                            ? "60 minutes"
+                            : "90 minutes"}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Date & Time:</span>
+                        <span className="text-gray-900">
+                          {new Date(formData.date).toLocaleDateString()} at{" "}
+                          {formData.time}
+                        </span>
+                      </div>
+                      {selectedAddOns.length > 0 && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-700">Enhancements:</span>
+                          <span className="text-gray-900">
+                            {selectedAddOns
+                              .map((addOn) => addOn.name)
+                              .join(", ")}
+                          </span>
+                        </div>
+                      )}
+                      <div className="border-t border-amber-200 pt-2">
+                        <div className="flex justify-between">
+                          <span className="font-medium text-gray-900">
+                            Total:
+                          </span>
+                          <span className="font-bold text-amber-700">
+                            ${totalPrice}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-700">Duration:</span>
-                    <span className="text-gray-900">
-                      {formData.duration === "60" ? "60 minutes" : "90 minutes"}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-700">Date & Time:</span>
-                    <span className="text-gray-900">
-                      {new Date(formData.date).toLocaleDateString()} at{" "}
-                      {formData.time}
-                    </span>
-                  </div>
-                  {selectedAddOns.length > 0 && (
-                    <div className="flex justify-between">
-                      <span className="text-gray-700">Enhancements:</span>
-                      <span className="text-gray-900">
-                        {selectedAddOns.map((addOn) => addOn.name).join(", ")}
-                      </span>
+
+                  {paymentError && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                      <p className="text-red-800 text-sm">{paymentError}</p>
                     </div>
                   )}
-                  <div className="border-t border-amber-200 pt-2">
-                    <div className="flex justify-between">
-                      <span className="font-medium text-gray-900">Total:</span>
-                      <span className="font-bold text-amber-700">
-                        ${totalPrice}
-                      </span>
+
+                  {process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ? (
+                    <PaymentForm
+                      amount={totalPrice}
+                      onSuccess={handlePaymentSuccess}
+                      onError={handlePaymentError}
+                      isProcessing={isPaymentProcessing}
+                      setIsProcessing={setIsPaymentProcessing}
+                    />
+                  ) : (
+                    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                      <p className="text-yellow-800 text-sm">
+                        Payment processing is not configured. Please contact us
+                        to complete your booking.
+                      </p>
+                      <button
+                        onClick={handlePaymentSuccess}
+                        className="mt-3 w-full bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-800 transform hover:scale-105 transition-all duration-300"
+                      >
+                        Continue Without Payment
+                      </button>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  )}
 
-              {paymentError && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <p className="text-red-800 text-sm">{paymentError}</p>
-                </div>
-              )}
-
-              {process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ? (
-                <PaymentForm
-                  amount={totalPrice}
-                  onSuccess={handlePaymentSuccess}
-                  onError={handlePaymentError}
-                  isProcessing={isPaymentProcessing}
-                  setIsProcessing={setIsPaymentProcessing}
-                />
-              ) : (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                  <p className="text-yellow-800 text-sm">
-                    Payment processing is not configured. Please contact us to
-                    complete your booking.
-                  </p>
                   <button
-                    onClick={handlePaymentSuccess}
-                    className="mt-3 w-full bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-800 transform hover:scale-105 transition-all duration-300"
+                    type="button"
+                    onClick={() => setPaymentOption(null)}
+                    className="w-full bg-white text-amber-700 px-6 py-3 rounded-lg font-semibold border-2 border-amber-700 hover:bg-amber-50 transform hover:scale-105 transition-all duration-300"
                   >
-                    Continue Without Payment
+                    Back to Payment Options
                   </button>
                 </div>
-              )}
+              ) : null}
 
-              <button
-                type="button"
-                onClick={() => setShowPayment(false)}
-                className="w-full bg-white text-amber-700 px-6 py-3 rounded-lg font-semibold border-2 border-amber-700 hover:bg-amber-50 transform hover:scale-105 transition-all duration-300"
-              >
-                Back to Booking
-              </button>
+              {!paymentOption && (
+                <button
+                  type="button"
+                  onClick={() => setShowPayment(false)}
+                  className="w-full bg-white text-amber-700 px-6 py-3 rounded-lg font-semibold border-2 border-amber-700 hover:bg-amber-50 transform hover:scale-105 transition-all duration-300"
+                >
+                  Back to Booking
+                </button>
+              )}
             </div>
           ) : (
             // Booking Form
@@ -493,6 +661,21 @@ export default function BookingModal({
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-colors"
                   placeholder="(555) 123-4567"
+                />
+              </div>
+
+              {/* Additional Notes Section */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Additional Notes
+                </label>
+                <textarea
+                  name="additionalNotes"
+                  value={formData.additionalNotes}
+                  onChange={handleInputChange}
+                  rows={3}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-colors resize-none"
+                  placeholder="Any special requests, health conditions, or preferences we should know about..."
                 />
               </div>
 
@@ -687,7 +870,7 @@ export default function BookingModal({
                 </div>
               </div>
 
-              {/* Notes */}
+              {/* Special Requests Notes */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Special Requests or Notes
@@ -715,7 +898,7 @@ export default function BookingModal({
                   }
                   className="flex-1 bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  Continue to Payment
+                  Continue to Payment Options
                 </button>
                 <button
                   type="button"
