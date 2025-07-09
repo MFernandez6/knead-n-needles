@@ -96,6 +96,7 @@ function PaymentFormContent({
 }
 
 export default function PaymentForm(props: PaymentFormProps) {
+  const { amount, onError } = props;
   const [clientSecret, setClientSecret] = useState<string | null>(null);
 
   useEffect(() => {
@@ -107,7 +108,7 @@ export default function PaymentForm(props: PaymentFormProps) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            amount: props.amount,
+            amount,
           }),
         });
 
@@ -115,17 +116,17 @@ export default function PaymentForm(props: PaymentFormProps) {
           const data = await response.json();
           setClientSecret(data.clientSecret);
         } else {
-          props.onError("Failed to initialize payment");
+          onError("Failed to initialize payment");
         }
       } catch {
-        props.onError("Failed to initialize payment");
+        onError("Failed to initialize payment");
       }
     };
 
-    if (props.amount > 0) {
+    if (amount > 0) {
       createPaymentIntent();
     }
-  }, [props.amount, props.onError]);
+  }, [amount, onError]);
 
   if (!clientSecret) {
     return (

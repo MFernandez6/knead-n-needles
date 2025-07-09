@@ -415,13 +415,28 @@ export default function BookingModal({
                 </div>
               )}
 
-              <PaymentForm
-                amount={totalPrice}
-                onSuccess={handlePaymentSuccess}
-                onError={handlePaymentError}
-                isProcessing={isPaymentProcessing}
-                setIsProcessing={setIsPaymentProcessing}
-              />
+              {process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ? (
+                <PaymentForm
+                  amount={totalPrice}
+                  onSuccess={handlePaymentSuccess}
+                  onError={handlePaymentError}
+                  isProcessing={isPaymentProcessing}
+                  setIsProcessing={setIsPaymentProcessing}
+                />
+              ) : (
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                  <p className="text-yellow-800 text-sm">
+                    Payment processing is not configured. Please contact us to
+                    complete your booking.
+                  </p>
+                  <button
+                    onClick={handlePaymentSuccess}
+                    className="mt-3 w-full bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-800 transform hover:scale-105 transition-all duration-300"
+                  >
+                    Continue Without Payment
+                  </button>
+                </div>
+              )}
 
               <button
                 type="button"
