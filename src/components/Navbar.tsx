@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import BookingModal from "./BookingModal";
+import AddOnsModal from "./AddOnsModal";
 
 interface AddOn {
   id: string;
@@ -12,14 +13,89 @@ interface AddOn {
   description: string;
 }
 
+const AVAILABLE_ADD_ONS: AddOn[] = [
+  {
+    id: "hot-stone",
+    name: "Hot Stone Therapy",
+    price: 30,
+    description:
+      "Warm basalt stones are placed on key points of your body to promote deep relaxation and muscle tension relief.",
+  },
+  {
+    id: "aromatherapy",
+    name: "Aromatherapy",
+    price: 20,
+    description:
+      "Essential oils are used to enhance your massage experience and promote emotional wellness.",
+  },
+  {
+    id: "cupping",
+    name: "Cupping Therapy",
+    price: 25,
+    description:
+      "Specialized cups create suction to help release muscle tension and improve blood flow.",
+  },
+  {
+    id: "acupuncture",
+    name: "Acupuncture",
+    price: 40,
+    description:
+      "Fine needles are strategically placed to promote natural wellness and balance energy flow.",
+  },
+  {
+    id: "chirp-halo",
+    name: "Chirp Halo Muscle Stim",
+    price: 35,
+    description:
+      "Advanced muscle stimulation technology to enhance recovery and reduce muscle tension.",
+  },
+  {
+    id: "hypervolt",
+    name: "Hypervolt",
+    price: 30,
+    description:
+      "Percussive therapy device that helps break up muscle knots and improve circulation.",
+  },
+  {
+    id: "cbd-oil",
+    name: "CBD Oil and Cream",
+    price: 25,
+    description:
+      "Premium CBD products applied during your session to enhance relaxation and promote natural wellness.",
+  },
+  {
+    id: "singing-bowls",
+    name: "Singing Bowls",
+    price: 20,
+    description:
+      "Therapeutic sound therapy using Tibetan singing bowls to promote deep relaxation and stress relief.",
+  },
+  {
+    id: "salt-scrub",
+    name: "Salt Scrub",
+    price: 25,
+    description:
+      "Exfoliating salt scrub treatment to rejuvenate skin and enhance your massage experience.",
+  },
+];
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const selectedAddOns: AddOn[] = [];
+  const [isAddOnsModalOpen, setIsAddOnsModalOpen] = useState(false);
+  const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>([]);
 
   const handleEditAddOns = () => {
-    // Redirect to services page for add-on selection
-    window.location.href = "/services";
+    setIsAddOnsModalOpen(true);
+  };
+
+  const handleAddOnsSelected = (addOns: AddOn[]) => {
+    setSelectedAddOns(addOns);
+  };
+
+  const handleAddOnsContinue = (addOns: AddOn[]) => {
+    setSelectedAddOns(addOns);
+    setIsAddOnsModalOpen(false);
   };
 
   return (
@@ -152,6 +228,14 @@ const Navbar = () => {
         onClose={() => setIsBookingModalOpen(false)}
         selectedAddOns={selectedAddOns}
         onEditAddOns={handleEditAddOns}
+      />
+
+      <AddOnsModal
+        isOpen={isAddOnsModalOpen}
+        onClose={() => setIsAddOnsModalOpen(false)}
+        addOns={AVAILABLE_ADD_ONS}
+        onAddOnsSelected={handleAddOnsSelected}
+        onContinue={handleAddOnsContinue}
       />
     </nav>
   );

@@ -196,6 +196,7 @@ export default function BookingModal({
         totalPrice,
         customerName: formData.name,
         customerEmail: formData.email,
+        customerPhone: formData.phone,
       };
 
       // Send booking details to API
@@ -280,6 +281,12 @@ export default function BookingModal({
                     <p className="text-gray-600 mb-6">
                       A confirmation email has been sent to {formData.email}{" "}
                       with your booking details.
+                      {formData.phone && (
+                        <span className="block mt-2">
+                          A text message confirmation has also been sent to your
+                          phone.
+                        </span>
+                      )}
                     </p>
                     <button
                       onClick={onClose}
