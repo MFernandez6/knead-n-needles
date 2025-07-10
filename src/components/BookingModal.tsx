@@ -33,7 +33,6 @@ export default function BookingModal({
     date: "",
     time: "",
     notes: "",
-    additionalNotes: "",
   });
 
   const [availableTimes, setAvailableTimes] = useState<string[]>([]);
@@ -183,7 +182,6 @@ export default function BookingModal({
           date: formData.date,
           time: formData.time,
           notes: formData.notes,
-          additionalNotes: formData.additionalNotes,
           addOns: selectedAddOns.map((addOn) => addOn.name),
           totalPrice,
           paymentOption,
@@ -228,7 +226,6 @@ export default function BookingModal({
       date: "",
       time: "",
       notes: "",
-      additionalNotes: "",
     });
     setSelectedTime("");
   };
@@ -664,21 +661,6 @@ export default function BookingModal({
                 />
               </div>
 
-              {/* Additional Notes Section */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Additional Notes
-                </label>
-                <textarea
-                  name="additionalNotes"
-                  value={formData.additionalNotes}
-                  onChange={handleInputChange}
-                  rows={3}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-colors resize-none"
-                  placeholder="Any special requests, health conditions, or preferences we should know about..."
-                />
-              </div>
-
               {/* Service Selection */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -870,10 +852,10 @@ export default function BookingModal({
                 </div>
               </div>
 
-              {/* Special Requests Notes */}
+              {/* Additional Notes */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Special Requests or Notes
+                  Additional Notes
                 </label>
                 <textarea
                   name="notes"
@@ -881,7 +863,7 @@ export default function BookingModal({
                   onChange={handleInputChange}
                   rows={3}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-colors resize-none"
-                  placeholder="Any special requests or information we should know..."
+                  placeholder="Any special requests, health conditions, or preferences we should know about..."
                 />
               </div>
 

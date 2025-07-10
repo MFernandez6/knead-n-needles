@@ -101,7 +101,6 @@ export async function POST(request: Request) {
       customerEmail,
       duration,
       notes,
-      additionalNotes,
       paymentOption,
     } = body;
 
@@ -175,8 +174,7 @@ Duration: ${appointmentDuration} minutes
 ${addOns.length > 0 ? `Add-ons: ${addOns.join(", ")}` : ""}
 Total Price: $${totalPrice}
 Payment: ${paymentOption === "now" ? "Paid Now" : "Pay After Service"}
-${notes ? `Special Requests: ${notes}` : ""}
-${additionalNotes ? `Additional Notes: ${additionalNotes}` : ""}
+${notes ? `Additional Notes: ${notes}` : ""}
 
 We look forward to providing you with an exceptional massage experience.
 
@@ -225,12 +223,7 @@ The Needle & Knead Team
               }</p>
               ${
                 notes
-                  ? `<p><strong>Special Requests:</strong> ${notes}</p>`
-                  : ""
-              }
-              ${
-                additionalNotes
-                  ? `<p><strong>Additional Notes:</strong> ${additionalNotes}</p>`
+                  ? `<p><strong>Additional Notes:</strong> ${notes}</p>`
                   : ""
               }
             </div>
