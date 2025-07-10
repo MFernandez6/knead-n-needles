@@ -376,7 +376,10 @@ export default function BookingModal({
                     <li>
                       • We&apos;ll contact you 24 hours before your appointment
                     </li>
-                    <li>• Please arrive 10 minutes early for your session</li>
+                    <li>
+                      • The massage therapist may arrive approximately 10
+                      minutes before to set up
+                    </li>
                     {paymentOption === "later" && (
                       <li>• Payment will be collected after your massage</li>
                     )}
