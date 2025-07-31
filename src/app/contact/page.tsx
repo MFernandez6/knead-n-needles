@@ -44,7 +44,7 @@ export default function ContactPage() {
       {/* Contact Information */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 gap-12">
             {/* Contact Details */}
             <div className="animate-fade-in-up">
               <h2 className="text-3xl font-bold text-gray-900 mb-8">
@@ -152,163 +152,14 @@ export default function ContactPage() {
                 >
                   View Services
                 </Link>
-                <button
-                  onClick={() => {
-                    // This would typically open the booking modal
-                    window.location.href = "/services";
-                  }}
+                <Link
+                  href="/services"
                   className="block w-full bg-white text-amber-700 border-2 border-amber-700 px-6 py-4 rounded-lg text-center font-semibold hover:bg-amber-50 transition-colors duration-300 transform hover:scale-105"
                 >
-                  Book Appointment
-                </button>
+                  View Services
+                </Link>
               </div>
             </div>
-
-            {/* Contact Form */}
-            <div
-              className="animate-fade-in-up"
-              style={{ animationDelay: "0.3s" }}
-            >
-              <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Send a Message
-                </h3>
-
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        First Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        className="input-field"
-                        placeholder="Your first name"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Last Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        className="input-field"
-                        placeholder="Your last name"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      className="input-field"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      className="input-field"
-                      placeholder="(555) 123-4567"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Subject *
-                    </label>
-                    <select className="input-field">
-                      <option value="">Select a topic</option>
-                      <option value="booking">Booking Inquiry</option>
-                      <option value="services">Services Information</option>
-                      <option value="pricing">Pricing Questions</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Message *
-                    </label>
-                    <textarea
-                      rows={4}
-                      required
-                      className="input-field resize-none"
-                      placeholder="Tell me how I can help you..."
-                    ></textarea>
-                  </div>
-
-                  <button type="submit" className="w-full btn-primary">
-                    Send Message
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="heading-responsive font-bold text-gray-900 mb-6">
-              Frequently Asked <span className="text-gradient">Questions</span>
-            </h2>
-            <p className="text-responsive text-gray-600">
-              Common questions about my services and booking process
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            {[
-              {
-                question: "What areas do you serve?",
-                answer:
-                  "I provide mobile massage therapy services throughout the local area. Contact me to confirm availability in your specific location.",
-              },
-              {
-                question: "How far in advance should I book?",
-                answer:
-                  "I recommend booking at least 24-48 hours in advance to ensure availability, though I do my best to accommodate last-minute requests when possible.",
-              },
-              {
-                question: "What should I prepare for my session?",
-                answer:
-                  "I&apos;ll bring everything needed for your massage, including the table, linens, and oils. Just provide a quiet, comfortable space in your home.",
-              },
-              {
-                question: "Do you offer gift certificates?",
-                answer:
-                  "Yes! Gift certificates are available and make perfect gifts for friends and family. Contact me for more details.",
-              },
-              {
-                question: "What payment methods do you accept?",
-                answer:
-                  "I accept cash, credit cards, and digital payments. Payment is collected at the time of service.",
-              },
-            ].map((faq, index) => (
-              <div
-                key={index}
-                className="card p-6 animate-fade-in-up"
-                style={{ animationDelay: `${0.1 * index}s` }}
-              >
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  {faq.question}
-                </h3>
-                <p className="text-gray-600">{faq.answer}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -331,14 +182,12 @@ export default function ContactPage() {
             >
               View Services
             </Link>
-            <button
-              onClick={() => {
-                window.location.href = "/services";
-              }}
+            <Link
+              href="/services"
               className="inline-block bg-transparent text-white border-2 border-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-amber-700 transform hover:scale-105 transition-all duration-300"
             >
-              Book Now
-            </button>
+              View Services
+            </Link>
           </div>
         </div>
       </section>

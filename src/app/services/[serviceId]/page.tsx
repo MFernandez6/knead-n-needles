@@ -2,9 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
-import { useState } from "react";
-import BookingModal from "@/components/BookingModal";
-import AddOnsModal from "@/components/AddOnsModal";
+import Link from "next/link";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 interface AddOn {
@@ -412,9 +410,6 @@ const SERVICES: Service[] = [
 export default function ServicePage() {
   const params = useParams();
   const router = useRouter();
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [isAddOnsModalOpen, setIsAddOnsModalOpen] = useState(false);
-  const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>([]);
 
   const service = SERVICES.find((s) => s.id === params.serviceId);
 
@@ -434,25 +429,6 @@ export default function ServicePage() {
       </div>
     );
   }
-
-  const handleEditAddOns = () => {
-    setIsAddOnsModalOpen(true);
-  };
-
-  const handleAddOnsSelected = (addOns: AddOn[]) => {
-    setSelectedAddOns(addOns);
-  };
-
-  const handleAddOnsContinue = (addOns: AddOn[]) => {
-    setSelectedAddOns(addOns);
-    setIsAddOnsModalOpen(false);
-    setIsBookingModalOpen(true);
-  };
-
-  const handleBookNow = () => {
-    setSelectedAddOns([]);
-    setIsBookingModalOpen(true);
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -522,32 +498,16 @@ export default function ServicePage() {
             </div>
 
             <div className="mt-8">
-              <button
-                onClick={handleBookNow}
-                className="w-full bg-amber-700 text-white px-6 py-3 rounded-md hover:bg-amber-800 transition-colors font-medium"
+              <Link
+                href="/contact"
+                className="w-full bg-amber-700 text-white px-6 py-3 rounded-md hover:bg-amber-800 transition-colors font-medium inline-block text-center"
               >
-                Book Now
-              </button>
+                Contact Us
+              </Link>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Modals */}
-      <BookingModal
-        isOpen={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-        selectedAddOns={selectedAddOns}
-        onEditAddOns={handleEditAddOns}
-      />
-
-      <AddOnsModal
-        isOpen={isAddOnsModalOpen}
-        onClose={() => setIsAddOnsModalOpen(false)}
-        addOns={service.addOns || []}
-        onAddOnsSelected={handleAddOnsSelected}
-        onContinue={handleAddOnsContinue}
-      />
     </div>
   );
 }

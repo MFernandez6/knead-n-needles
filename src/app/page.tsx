@@ -223,14 +223,15 @@ export default function Home() {
             Ready to Experience True Relaxation?
           </h2>
           <p className="text-responsive-lg text-amber-100 mb-12 leading-relaxed">
-            Book your appointment today and take the first step towards better
-            wellness. Your journey to relaxation begins with a single click.
+            Contact us today to schedule your personalized massage session.
+            Experience the convenience of mobile massage therapy in the comfort
+            of your home.
           </p>
           <Link
-            href="/services"
+            href="/contact"
             className="inline-block bg-white text-amber-700 px-10 py-4 rounded-lg font-semibold text-responsive-lg hover:bg-amber-50 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl animate-pulse-glow"
           >
-            Book Your Session
+            Contact Us
           </Link>
         </div>
       </section>

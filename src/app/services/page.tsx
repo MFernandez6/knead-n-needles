@@ -2,83 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import BookingModal from "@/components/BookingModal";
-import AddOnsModal from "@/components/AddOnsModal";
 import Navbar from "@/components/Navbar";
-
-interface AddOn {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-}
-
-const AVAILABLE_ADD_ONS: AddOn[] = [
-  {
-    id: "hot-stone",
-    name: "Hot Stone Therapy",
-    price: 30,
-    description:
-      "Warm basalt stones are placed on key points of your body to promote deep relaxation and muscle tension relief.",
-  },
-  {
-    id: "aromatherapy",
-    name: "Aromatherapy",
-    price: 20,
-    description:
-      "Essential oils are used to enhance your massage experience and promote emotional wellness.",
-  },
-  {
-    id: "cupping",
-    name: "Cupping Therapy",
-    price: 25,
-    description:
-      "Specialized cups create suction to help release muscle tension and improve blood flow.",
-  },
-  {
-    id: "acupuncture",
-    name: "Acupuncture",
-    price: 40,
-    description:
-      "Fine needles are strategically placed to promote natural wellness and balance energy flow.",
-  },
-  {
-    id: "chirp-halo",
-    name: "Chirp Halo Muscle Stim",
-    price: 35,
-    description:
-      "Advanced muscle stimulation technology to enhance recovery and reduce muscle tension.",
-  },
-  {
-    id: "hypervolt",
-    name: "Hypervolt",
-    price: 30,
-    description:
-      "Percussive therapy device that helps break up muscle knots and improve circulation.",
-  },
-  {
-    id: "cbd-oil",
-    name: "CBD Oil and Cream",
-    price: 25,
-    description:
-      "Premium CBD products applied during your session to enhance relaxation and promote natural wellness.",
-  },
-  {
-    id: "singing-bowls",
-    name: "Singing Bowls",
-    price: 20,
-    description:
-      "Therapeutic sound therapy using Tibetan singing bowls to promote deep relaxation and stress relief.",
-  },
-  {
-    id: "salt-scrub",
-    name: "Salt Scrub",
-    price: 25,
-    description:
-      "Exfoliating salt scrub treatment to rejuvenate skin and enhance your massage experience.",
-  },
-];
 
 const services = [
   {
@@ -494,25 +418,6 @@ const services = [
 ];
 
 export default function ServicesPage() {
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [isAddOnsModalOpen, setIsAddOnsModalOpen] = useState(false);
-  const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>([]);
-
-  const handleEditAddOns = () => {
-    setIsBookingModalOpen(false);
-    setIsAddOnsModalOpen(true);
-  };
-
-  const handleAddOnsSelected = (addOns: AddOn[]) => {
-    setSelectedAddOns(addOns);
-  };
-
-  const handleAddOnsContinue = (addOns: AddOn[]) => {
-    setSelectedAddOns(addOns);
-    setIsAddOnsModalOpen(false);
-    setIsBookingModalOpen(true);
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-amber-50">
       <Navbar />
@@ -613,15 +518,12 @@ export default function ServicesPage() {
                     >
                       Learn More
                     </Link>
-                    <button
-                      onClick={() => {
-                        setSelectedAddOns([]);
-                        setIsBookingModalOpen(true);
-                      }}
+                    <Link
+                      href="/contact"
                       className="flex-1 text-center bg-white text-amber-700 border border-amber-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-amber-50 transition-colors"
                     >
-                      Book Now
-                    </button>
+                      Contact Us
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -638,35 +540,16 @@ export default function ServicesPage() {
             Ready to Experience True Relaxation?
           </h2>
           <p className="text-responsive text-amber-100 mb-8">
-            Book your appointment today and take the first step towards better
-            wellness
+            Contact us today to schedule your personalized massage session
           </p>
-          <button
-            onClick={() => {
-              setSelectedAddOns([]);
-              setIsBookingModalOpen(true);
-            }}
+          <Link
+            href="/contact"
             className="inline-block bg-white text-amber-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-amber-50 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
-            Book Your Appointment
-          </button>
+            Contact Us
+          </Link>
         </div>
       </section>
-
-      <BookingModal
-        isOpen={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-        selectedAddOns={selectedAddOns}
-        onEditAddOns={handleEditAddOns}
-      />
-
-      <AddOnsModal
-        isOpen={isAddOnsModalOpen}
-        onClose={() => setIsAddOnsModalOpen(false)}
-        addOns={AVAILABLE_ADD_ONS}
-        onAddOnsSelected={handleAddOnsSelected}
-        onContinue={handleAddOnsContinue}
-      />
     </div>
   );
 }
